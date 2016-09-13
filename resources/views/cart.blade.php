@@ -10,6 +10,57 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/animate.css">
     <link rel="stylesheet" href="../public/css/style.css">
+	
+	<style>
+	
+		.cart{
+			margin-top: 50px;
+		}
+		
+		.cartItems{
+			background-color: rgba(211, 211, 211, 0.15);
+		}
+		
+		#cartHeading{
+			font-size: 3em;
+			color: #c5c5c5;
+			margin-bottom: 30px;
+		}
+		
+		.cartSummary{
+			background-color: white;
+		}
+		
+		#summaryHeading{
+			color: black;
+			font-size: 1.5em;
+			padding-top: 10px;
+			border-bottom: 3px solid black;
+		}
+		
+		.ticketSummary:nth-of-type(1){
+			padding-top: 20px;
+		}
+		
+		.ticketSummary{
+			color: black;
+		}
+		
+		.totalPrice{
+			padding-top: 10px;
+			border-top: 1px solid gray;
+			color:black;
+			font-weight: bold;
+		}
+		
+		.checkoutButton{
+			margin-top: 10px;
+			margin-bottom: 20px;
+			background-color: black;
+		}
+		
+	</style>
+	
 </head>
 
 <body>
@@ -29,7 +80,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navToggle">
-		
+
             <ul class="nav navbar-nav">
 			<li><a href="#">Home</a></li>
 			<li class="dropdown">
@@ -41,7 +92,7 @@
 				</ul>
 			</li>
 			<li><a href="#">Movies</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+			<li><a href="#">Cart</a></li>
             </ul>
 
             <div class="col-sm-3 col-md-3 col-lg-5">
@@ -63,6 +114,7 @@
         </div>
     </div>
 </nav>
+
 
 <div id="cinemaModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -166,112 +218,34 @@
 </div>
 
 
-<div class="container carousel-placeholder"></div>
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-    <h1 class="title"></h1>
-
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active" style="background-image:url(../public/img/large-banners/deadpool.jpg);">
-            <img src="../public/img/deadpool.jpg" alt="deadpool">
-            <div class="carousel-caption">
-                <h3>Deadpool</h3>
-                <p>A former Special Forces operative turned mercenary is subjected to a rogue experiment that leaves him
-                    with accelerated healing powers, adopting the alter ego Deadpool.</p>
-            </div>
-        </div>
-
-        <div class="item" style="background-image:url(../public/img/bourne.jpg);">
-            <img src="../public/img/bourne.jpg" alt="bourne">
-            <div class="carousel-caption">
-                <h3>Jason Bourne</h3>
-                <p>The CIA's most dangerous former operative is drawn out of hiding to uncover more explosive truths
-                    about his past.</p>
-            </div>
-        </div>
-
-        <div class="item" style="background-image:url(../public/img/large-banners/batman.jpg);">
-            <img src="../public/img/batman.jpg" alt="batman">
-            <div class="carousel-caption">
-                <h3>Batman v Superman</h3>
-                <h4>Dawn of Justice</h4>
-                <p>Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the
-                    world wrestles with what kind of a hero it really needs.</p>
-            </div>
-        </div>
-
-        <div class="item" style="background-image:url(../public/img/large-banners/zootopia.png);">
-            <img src="../public/img/zoo.jpg" alt="zoo">
-            <div class="carousel-caption">
-                <h3>Zootopia</h3>
-                <p>In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work
-                    together to uncover a conspiracy.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <div class="backforwardSwitch">
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+<div class="container">
+	<div class="row cart">
+		<div class="col-lg-6 cartItems">
+			<p id="cartHeading">Shopping Bag</p>
+			<div style="padding-bottom:20px;">
+				<img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="150" height="200">
+				<div style="float:right;margin-right:150px;">
+					<p>Movie: X-MEN APOCALYPSE</p>
+					<p>Cinema: Melbourne Central</p>
+					<p>Session Time: Wednesday, 5-7pm</p>
+					<p>First Class Ticket: 2</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-5 col-lg-offset-1 cartSummary">
+			<p id="summaryHeading">Order Summary</p>
+			<p class="ticketSummary">Standard Adult: <span id="sd">7</span></p>
+			<p class="ticketSummary">Standard Concession: <span id="sc">5</span></p>
+			<p class="ticketSummary">Standard Child: <span id="schild">1</span></p>
+			<p class="ticketSummary">First Class Adult: <span id="fca">4</span></p>
+			<p class="ticketSummary">First Class Child: <span id="fcc">3</span></p>
+			<p class="totalPrice">Total: $<span>79</span> AUD</p>
+			<button type="submit" class="col-lg-12 btn btn-default btn-md checkoutButton">PROCEED TO CHECKOUT</button>
+		</div>
+	</div>
 </div>
 
-<div class="container topMovies">
-    <div class="row">
-        <p id="topMovies-header">WHAT'S HOT</p>
-        <div class="col-lg-3 boxHits" style="padding-left:0px;">
-            <img src="../public/img/squad.jpg" class="img-thumbnail" alt="suicidesquad" width="290" height="200">
-        </div>
-        <div class="col-lg-3 boxHits">
-            <img src="../public/img/sausage.jpg" class="img-thumbnail" alt="sausageparty" width="290" height="200">
-        </div>
-        <div class="col-lg-3 boxHits">
-            <img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="290" height="200">
-        </div>
-        <div class="col-lg-3 boxHits" style="padding-right:0px;">
-            <img src="../public/img/sully.jpg" class="img-thumbnail" alt="sully" width="290" height="200">
-        </div>
-    </div>
-</div>
 
-<div class="container newsBox">
-    <div class="row">
-        <div class="col-lg-5 newsBox-left">
-            <p>Don't be late,</p>
-            <p>Book your ticket now!</p>
-            <a href="#" class="ticket"><i class="book"></i>BOOK TICKET</a>
-        </div>
-        <div class="col-lg-7 newsBox-right">
-            <p id="newBoxRight-header">NEWS</p>
-            <p class="subheading">Get discount upto <strong>10%</strong> if you are a member!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo.</p>
-            <hr/>
-            <p class="subheading">We are expanding!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo.</p>
-        </div>
-    </div>
-</div>
 
 <footer class="container">
     <p>
