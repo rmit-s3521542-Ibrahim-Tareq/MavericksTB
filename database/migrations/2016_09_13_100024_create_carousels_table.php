@@ -14,6 +14,10 @@ class CreateCarouselsTable extends Migration
     {
         Schema::create('carousels', function (Blueprint $table) {
             $table->increments('id');
+            $table->foreign('movie_id')
+                ->references('id')
+                ->on('movies');
+            $table->integer('position');
             $table->timestamps();
         });
     }
