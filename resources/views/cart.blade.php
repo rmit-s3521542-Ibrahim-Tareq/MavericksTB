@@ -82,7 +82,7 @@
         <div class="collapse navbar-collapse" id="navToggle">
 
             <ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
+			<li><a href="{!! url('/') !!}">Home</a></li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">QuickTix
 				<span class="caret"></span></a>
