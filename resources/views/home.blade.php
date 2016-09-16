@@ -231,17 +231,17 @@
 					  <tr>
 						<td>Standard Adult</td>
 						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						<td>$<span class="subtotalPrice">0.00</span></td>
 					  </tr>
 					  <tr>
 						<td>Standard Concession</td>
 						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						<td>$<span class="subtotalPrice">0.00</span></td>
 					  </tr>
 					  <tr>
 						<td>Standard Child</td>
 						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						<td>$<span class="subtotalPrice">0.00</span></td>
 					  </tr>
 					  <tr>
 						<td>First Class Adult</td>
