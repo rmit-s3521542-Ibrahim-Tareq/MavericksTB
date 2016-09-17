@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/animate.css">
-    <link rel="stylesheet" href="../../../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 	
 	<style>
 		.cinemaSession{
