@@ -15,11 +15,4 @@ Route::get('/', 'HomeController@show');
 
 Route::get('/cart', 'CartController@show');
 
-
-/* Route::get('/', function () {
-    return view('home');
-}); */
-
-/* Route::get('/cart', function () {
-    return view('cart');
-}); */
+Route::get('/movies', 'MovieController@showDefault');
