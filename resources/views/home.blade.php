@@ -9,7 +9,21 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/animate.css">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../../../public/css/style.css">
+	
+	<style>
+		.cinemaSession{
+			border-bottom: 1px solid darkgray;
+			padding-bottom: 30px;
+		}	
+		.table{
+			margin-top: 30px;
+		}
+		.table td, th {
+		   text-align: center;   
+		}
+	</style>
+	
 </head>
 
 <body>
@@ -29,14 +43,22 @@
         </div>
 
         <div class="collapse navbar-collapse" id="navToggle">
-
+		
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">Cart</a></li>
+			<li><a href="{!! url('/') !!}">Home</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">QuickTix
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				  <li><a href="#" data-toggle="modal" data-target="#cinemaModal">Search by Cinema</a></li>
+				  <li><a href="#" data-toggle="modal" data-target="#movieModal">Search by Movie</a></li>
+				</ul>
+			</li>
+			<li><a href="#">Movies</a></li>
+			<li><a href="{{ action('CartController@show') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
 
-            <div class="col-sm-3 col-md-3 col-lg-7">
+            <div class="col-sm-3 col-md-3 col-lg-5">
                 <form class="navbar-form navbar-right" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
@@ -55,6 +77,193 @@
         </div>
     </div>
 </nav>
+
+<div id="cinemaModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cinema Search</h4>
+      </div>
+	  
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" id="ticketform">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="subject"><p>Select Cinema:</p></label>
+				<div class="col-sm-9">
+					<select class="form-control input-sm" id="os" name="os">
+					 <option selected disabled hidden style='display: none' value=''></option>
+						<option>Melbourne Central</option>
+						<option>Watergardens</option>
+						<option>Northlands</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="subject"><p>Select Movie:</p></label>
+				<div class="col-sm-9">
+					<select class="form-control input-sm" id="os" name="os">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="subject"><p>Select Session:</p></label>
+				<div class="col-sm-9">
+					<select class="form-control input-sm" id="os" name="os">
+						<option selected disabled hidden style='display: none' value=''></option>
+						<option>Monday, 2-5pm</option>
+						<option>Wednesday, 5-7pm</option>
+						<option>Friday, 8-10pm</option>
+					</select>
+				</div>
+			</div>
+	  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Buy Tickets</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="movieModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Movie Search</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" id="ticketform">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="subject"><p>Select Movie:</p></label>
+				<div class="col-sm-9">
+					<select class="form-control input-sm" id="os" name="os">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="subject"><p>Select Cinema:</p></label>
+				<div class="col-sm-9">
+					<select class="form-control input-sm" id="os" name="os">
+						<option selected disabled hidden style='display: none' value=''></option>
+						<option>Melbourne Central</option>
+						<option>Watergardens</option>
+						<option>Northlands</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="subject"><p>Select Session:</p></label>
+				<div class="col-sm-9">
+					<select class="form-control input-sm" id="os" name="os">
+						<option selected disabled hidden style='display: none' value=''></option>
+						<option>Monday, 2-5pm</option>
+						<option>Wednesday, 5-7pm</option>
+						<option>Friday, 8-10pm</option>
+					</select>
+				</div>
+			</div>
+	  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Buy Tickets</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="tilesModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" onclick="resetFields()">&times;</button>
+	  <h4 class="modal-title">Ticket Booking</h4>
+	</div>
+	
+	<form role="form" id="ticketform" action="{!! url('/cart') !!}" method="post">
+		<div class="modal-body">
+			<div class="text-center row">
+				<div class="col-lg-12" style="font-size:1.5em;">
+					<p>Movie Name: <span id="namePlaceholder"></span></p>
+					<input type="hidden" name="movieName" id="movieName">
+				</div>
+			</div>
+			<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+			<div class="row cinemaSession" style="margin-top:20px;">
+				<div class="col-lg-6">
+					<p>Cinema location: </p>
+					<select class="form-control input-sm" name="location">
+						<option selected disabled hidden style='display: none' value=''></option>
+						<option value="melbCentral">Melbourne Central</option>
+						<option value="watergardens">Watergardens</option>
+						<option value="northlands">Northlands</option>
+					</select>
+				</div>
+				<div class="col-lg-6">
+					<p>Session Time: </p>
+					<select class="form-control input-sm" name="time">
+						<option selected disabled hidden style='display: none' value=''></option>
+						<option value="monday">Monday, 2-5pm</option>
+						<option value="wednesday">Wednesday, 5-7pm</option>
+						<option value="friday">Friday, 8-10pm</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+					<table id="bookingTable" class="table table-hover">
+						<thead>
+						  <tr>
+							<th>Ticket Type</th>
+							<th>Quantity</th>
+							<th>Subtotal Price</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td>Child</td>
+							<td><input type="number" name="child" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+							<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						  </tr>
+						  <tr>
+							<td>Adult</td>
+							<td><input type="number" name="adult" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+							<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						  </tr>
+						  <tr>
+							<td>Seniors</td>
+							<td><input type="number" name="senior" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+							<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						  </tr>
+						  <tr>
+							<td>Concession</td>
+							<td><input type="number" name="concession" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+							<td>$<span class="subtotalPrice resetMe">0.00</span></td>
+						  </tr>
+						</tbody>
+					</table>
+				<p class="text-right" style="font-size:2em;padding-top:10px;padding-right:50px;margin-bottom:-10px;">Grand Total: <span id="totalPrice" class="resetMe"></span></p>
+			</div>
+		</div>
+	</form>
+	<div class="modal-footer">
+	  <button type="button" id="submitForm" class="btn btn-default">Add to cart</button>
+	</div>
+  </div>
+  
+</div>
+</div>
+
 
 <div class="container carousel-placeholder"></div>
 
@@ -127,16 +336,16 @@
     <div class="row">
         <p id="topMovies-header">WHAT'S HOT</p>
         <div class="col-lg-3 boxHits" style="padding-left:0px;">
-            <img src="../public/img/squad.jpg" class="img-thumbnail" alt="suicidesquad" width="290" height="200">
+            <img src="../public/img/squad.jpg" class="img-thumbnail" alt="suicidesquad" width="290" height="200" id="1" onclick="openBooking(this.id)">
         </div>
         <div class="col-lg-3 boxHits">
-            <img src="../public/img/sausage.jpg" class="img-thumbnail" alt="sausageparty" width="290" height="200">
+            <img src="../public/img/sausage.jpg" class="img-thumbnail" alt="sausageparty" width="290" height="200" id="2" onclick="openBooking(this.id)">
         </div>
         <div class="col-lg-3 boxHits">
-            <img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="290" height="200">
+            <img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="290" height="200" id="3" onclick="openBooking(this.id)">
         </div>
         <div class="col-lg-3 boxHits" style="padding-right:0px;">
-            <img src="../public/img/sully.jpg" class="img-thumbnail" alt="sully" width="290" height="200">
+            <img src="../public/img/sully.jpg" class="img-thumbnail" alt="sully" width="290" height="200" id="4" onclick="openBooking(this.id)">
         </div>
     </div>
 </div>
@@ -172,8 +381,105 @@
     </p>
 </footer>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+	
+	function priceValidator(quantityInput) 
+	{
+		if (quantityInput.value == "") 
+		{
+			quantityInput.value = 0;
+		} 
+		else
+		{
+			quantityInput.value = parseInt(quantityInput.value);
+		}
+	}
+	
+	function calculatePrice() 
+	{
+		var ticketTable = document.getElementById("bookingTable");
+		var quantity = document.getElementsByClassName("numOfTickets");
+	
+		ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 8).toFixed(2);		//Child
+		ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 14).toFixed(2);	//Adult
+		ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 12).toFixed(2);	//Senior
+		ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 10).toFixed(2);	//Concession
+
+		calculateTotalPrice();		
+	} 
+	
+	function calculateTotalPrice() 
+	{
+		var ticketTable = document.getElementById("bookingTable");
+		var totalPrice = parseFloat(0.0);
+
+		for (var i = 1; i <= 4; i++) 
+		{
+			totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
+		}
+    
+		document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
+	}
+
+	function openBooking(id)
+	{
+
+		if(id == 1)
+		{
+			$("#namePlaceholder").html("Suicide Squad");
+			$("#movieName").val("Suicide Squad");
+		}
+		else if(id == 2)
+		{
+			$("#namePlaceholder").html("Sausage Party");
+			$("#movieName").val("Sausage Party");
+		}
+		else if(id == 3)
+		{
+			$("#namePlaceholder").html("X-MEN Apocalypse");
+			$("#movieName").val("X-MEN Apocalypse");
+		}
+		else
+		{
+			$("#namePlaceholder").html("Sully");	
+			$("#movieName").val("Sully");	
+		}
+		
+		$('#tilesModal').modal('show');
+	}
+	
+	function resetFields()
+	{
+		var x = document.getElementsByClassName("resetMe");
+    		
+		for(var i = 0; i < x.length; i++)
+		{
+			x[i].value = "0";
+			x[i].innerHTML= "0.00";
+		}
+	}
+	
+	$(document).ready(function()
+    {
+		/*("#submitForm").click(function(){
+			$("#ticketform").submit(function(){
+				alert("Submitted");
+			});
+		});*/
+		
+		
+		$("#submitForm").click(function(){
+			$('#ticketform').submit();
+		});
+        
+    });
+	
+</script>
+
 </body>
 
 </html>
