@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::auth();
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('/cart', 'CartController@show');
+
+Route::get('/movies', 'MovieController@showDefault');
+
+Route::get('/home', 'HomeController@index');
+
+Route::get('/account', 'AccountController@show');

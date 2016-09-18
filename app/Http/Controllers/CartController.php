@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class CartController extends Controller
 {
+
+    public function show() {
+        return view('cart');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,18 +42,6 @@ class CartController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        
     }
 
     /**

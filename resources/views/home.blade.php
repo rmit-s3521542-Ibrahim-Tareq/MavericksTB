@@ -1,273 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Mavericks Inc</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/animate.css">
-    <link rel="stylesheet" href="../public/css/style.css">
-	
-	<style>
-		.cinemaSession{
-			border-bottom: 1px solid darkgray;
-			padding-bottom: 30px;
-		}	
-		.table{
-			margin-top: 30px;
-		}
-		.table td, th {
-		   text-align: center;   
-		}
-	</style>
-	
-</head>
+@extends('components.global')
 
-<body>
-
-<!-- Navbar -->
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navToggle" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navToggle">
-		
-            <ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">QuickTix
-				<span class="caret"></span></a>
-				<ul class="dropdown-menu">
-				  <li><a href="#" data-toggle="modal" data-target="#cinemaModal">Search by Cinema</a></li>
-				  <li><a href="#" data-toggle="modal" data-target="#movieModal">Search by Movie</a></li>
-				</ul>
-			</li>
-			<li><a href="#">Movies</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-            </ul>
-
-            <div class="col-sm-3 col-md-3 col-lg-5">
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div id="cinemaModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Cinema Search</h4>
-      </div>
-	  
-      <div class="modal-body">
-        <form class="form-horizontal" role="form" id="ticketform">
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="subject"><p>Select Cinema:</p></label>
-				<div class="col-sm-9">
-					<select class="form-control input-sm" id="os" name="os">
-					 <option selected disabled hidden style='display: none' value=''></option>
-						<option>Melbourne Central</option>
-						<option>Watergardens</option>
-						<option>Northlands</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="subject"><p>Select Movie:</p></label>
-				<div class="col-sm-9">
-					<select class="form-control input-sm" id="os" name="os">
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="subject"><p>Select Session:</p></label>
-				<div class="col-sm-9">
-					<select class="form-control input-sm" id="os" name="os">
-						<option selected disabled hidden style='display: none' value=''></option>
-						<option>Monday, 2-5pm</option>
-						<option>Wednesday, 5-7pm</option>
-						<option>Friday, 8-10pm</option>
-					</select>
-				</div>
-			</div>
-	  </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Buy Tickets</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div id="movieModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Movie Search</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" role="form" id="ticketform">
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="subject"><p>Select Movie:</p></label>
-				<div class="col-sm-9">
-					<select class="form-control input-sm" id="os" name="os">
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="subject"><p>Select Cinema:</p></label>
-				<div class="col-sm-9">
-					<select class="form-control input-sm" id="os" name="os">
-						<option selected disabled hidden style='display: none' value=''></option>
-						<option>Melbourne Central</option>
-						<option>Watergardens</option>
-						<option>Northlands</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="subject"><p>Select Session:</p></label>
-				<div class="col-sm-9">
-					<select class="form-control input-sm" id="os" name="os">
-						<option selected disabled hidden style='display: none' value=''></option>
-						<option>Monday, 2-5pm</option>
-						<option>Wednesday, 5-7pm</option>
-						<option>Friday, 8-10pm</option>
-					</select>
-				</div>
-			</div>
-	  </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Buy Tickets</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="tilesModal" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-	<div class="modal-header">
-	  <button type="button" class="close" data-dismiss="modal">&times;</button>
-	  <h4 class="modal-title">Ticket Booking</h4>
-	</div>
-	<div class="modal-body">
-		<div class="text-center row">
-			<div class="col-lg-12" style="font-size:1.5em;">
-				<p>Movie Name: <span id="namePlaceholder"></span></p>
-			</div>
-		</div>
-		
-		<div class="row cinemaSession" style="margin-top:20px;">
-			<div class="col-lg-6">
-				<p>Cinema location: </p>
-				<select class="form-control input-sm" id="os" name="os">
-					<option selected disabled hidden style='display: none' value=''></option>
-					<option>Melbourne Central</option>
-					<option>Watergardens</option>
-					<option>Northlands</option>
-				</select>
-			</div>
-			<div class="col-lg-6">
-				<p>Session Time: </p>
-				<select class="form-control input-sm" id="os" name="os">
-					<option selected disabled hidden style='display: none' value=''></option>
-					<option>Monday, 2-5pm</option>
-					<option>Wednesday, 5-7pm</option>
-					<option>Friday, 8-10pm</option>
-				</select>
-			</div>
-		</div>
-		
-		<div class="row">
-			<form>
-				<table id="bookingTable" class="table table-hover">
-					<thead>
-					  <tr>
-						<th>Ticket Type</th>
-						<th>Quantity</th>
-						<th>Subtotal Price</th>
-					  </tr>
-					</thead>
-					<tbody>
-					  <tr>
-						<td>Standard Adult</td>
-						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice resetMe">0.00</span></td>
-					  </tr>
-					  <tr>
-						<td>Standard Concession</td>
-						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice resetMe">0.00</span></td>
-					  </tr>
-					  <tr>
-						<td>Standard Child</td>
-						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice resetMe">0.00</span></td>
-					  </tr>
-					  <tr>
-						<td>First Class Adult</td>
-						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice">0.00</span></td>
-					  </tr>
-					  <tr>
-						<td>First Class Adult</td>
-						<td><input type="number" name="quantity" min="1" max="10" class="numOfTickets" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-						<td>$<span class="subtotalPrice">0.00</span></td>
-					  </tr>
-					</tbody>
-				</table>
-			</form>
-			<p class="text-right" style="font-size:2em;padding-top:10px;padding-right:50px;margin-bottom:-10px;">Grand Total: <span id="totalPrice"></span></p>
-		</div>
-	</div>
-	<div class="modal-footer">
-	  <button type="button" class="btn btn-default" data-dismiss="modal">Add to cart</button>
-	</div>
-  </div>
-  
-</div>
-</div>
-
-
+@section('content')
 <div class="container carousel-placeholder"></div>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -374,86 +107,85 @@
         </div>
     </div>
 </div>
-
-<footer class="container">
-    <p>
-        <b>RMIT University</b>
-        <br>Written by: Ibrahim Tarek (s3521542), Dylan Aird (s3249319), Nicholas Zuccarelli (s3546815), Singh Avtar
-        (s3530196)
-        <br/><i>for Web Database Applications (WDA)</i>
-    </p>
-</footer>
+@endsection
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+@section('additionalJs')
 <script>
-	
-	function priceValidator(quantityInput) 
-	{
-		if (quantityInput.value == "") 
-		{
-			quantityInput.value = 0;
-		} 
-		else
-		{
-			quantityInput.value = parseInt(quantityInput.value);
-		}
-	}
-	
-	function calculatePrice() 
-	{
-		var ticketTable = document.getElementById("bookingTable");
-		var quantity = document.getElementsByClassName("numOfTickets");
-	
-		ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 12).toFixed(2);
-		ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 10).toFixed(2);
-		ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 8).toFixed(2);
-		ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 25).toFixed(2);
-		ticketTable.rows[5].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[4].value * 20).toFixed(2);
-
-		calculateTotalPrice();		
-	} 
-	
-	function calculateTotalPrice() 
-	{
-		var ticketTable = document.getElementById("bookingTable");
-		var totalPrice = parseFloat(0.0);
-
-		for (var i = 1; i <= 5; i++) 
-		{
-			totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
-		}
-    
-		document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
-	}
-
-	function openBooking(id)
-	{
-
-		if(id == 1)
-		{
-			$("#namePlaceholder").html("Suicide Squad");
-		}
-		else if(id == 2)
-		{
-			$("#namePlaceholder").html("Sausage Party");
-		}
-		else if(id == 3)
-		{
-			$("#namePlaceholder").html("X-MEN Apocalypse");
-		}
-		else
-		{
-			$("#namePlaceholder").html("Sully");	
-		}
-		
-		$('#tilesModal').modal('show');
-	}
-	
+    function priceValidator(quantityInput)
+    {
+        if (quantityInput.value == "")
+        {
+            quantityInput.value = 0;
+        }
+        else
+        {
+            quantityInput.value = parseInt(quantityInput.value);
+        }
+    }
+    function calculatePrice()
+    {
+        var ticketTable = document.getElementById("bookingTable");
+        var quantity = document.getElementsByClassName("numOfTickets");
+        ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 8).toFixed(2);		//Child
+        ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 14).toFixed(2);	//Adult
+        ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 12).toFixed(2);	//Senior
+        ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 10).toFixed(2);	//Concession
+        calculateTotalPrice();
+    }
+    function calculateTotalPrice()
+    {
+        var ticketTable = document.getElementById("bookingTable");
+        var totalPrice = parseFloat(0.0);
+        for (var i = 1; i <= 4; i++)
+        {
+            totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
+        }
+        document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
+    }
+    function openBooking(id)
+    {
+        if(id == 1)
+        {
+            $("#namePlaceholder").html("Suicide Squad");
+            $("#movieName").val("Suicide Squad");
+        }
+        else if(id == 2)
+        {
+            $("#namePlaceholder").html("Sausage Party");
+            $("#movieName").val("Sausage Party");
+        }
+        else if(id == 3)
+        {
+            $("#namePlaceholder").html("X-MEN Apocalypse");
+            $("#movieName").val("X-MEN Apocalypse");
+        }
+        else
+        {
+            $("#namePlaceholder").html("Sully");
+            $("#movieName").val("Sully");
+        }
+        $('#tilesModal').modal('show');
+    }
+    function resetFields()
+    {
+        var x = document.getElementsByClassName("resetMe");
+        for(var i = 0; i < x.length; i++)
+        {
+            x[i].value = "0";
+            x[i].innerHTML= "0.00";
+        }
+    }
+    $(document).ready(function()
+    {
+        /*("#submitForm").click(function(){
+         $("#ticketform").submit(function(){
+         alert("Submitted");
+         });
+         });*/
+        $("#submitForm").click(function(){
+            $('#ticketform').submit();
+        });
+    });
 </script>
-
-</body>
-
-</html>
+@endsection

@@ -18,11 +18,12 @@ h1, h2, h3, h4, h5, h6 {
     z-index:1;
 }
 
-.logo
-{
-    padding: 20px 20px;
-    background-color: white;
-    width: 100%;
+.m-logo {
+    min-width: 270px;
+    min-height:60px;
+    background-image: url(../img/logo-head.png);
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .navbar-default
@@ -45,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #topMovies-header
 {
-    font-family: 'Arimo', sans-serif; 
+    font-family: 'Arimo', sans-serif;
     font-size: 2.5em;
     font-weight: bold;
 }
@@ -80,19 +81,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .newsBox-left p:nth-of-type(1)
-{ 
+{
     font-size: 2.5em;
     color: #c5c5c5;
 }
 
 .newsBox-left p:nth-of-type(2)
-{ 
+{
     margin-top: -15px;
     font-size: 3em;
     font-weight: bold;
 }
 
-.newsBox-left a 
+.newsBox-left a
 {
     text-decoration: none;
 }
@@ -102,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-.ticket 
+.ticket
 {
     background-color: gray;
     font-size: 1.2em;
@@ -140,7 +141,7 @@ i.book {
 
 #newBoxRight-header
 {
-    font-family: 'Arimo', sans-serif; 
+    font-family: 'Arimo', sans-serif;
     font-size: 2.5em;
     font-weight: bold;
     color: #c5c5c5;
@@ -149,7 +150,7 @@ i.book {
 
 .subheading
 {
-    font-family: 'Arimo', sans-serif; 
+    font-family: 'Arimo', sans-serif;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -158,7 +159,7 @@ footer
 {
     margin-top: 40px;
     padding-top: 10px;
-    border-top: 2px solid lightgray;
+    border-top: 2px solid #3a3a3a;
 }
 
 
@@ -191,9 +192,9 @@ footer
     font-style: italic;
     font-size: 4em;
     height: 100px;
-    background-image: url(../img/logo-s.png), url(../img/grad-headerN.png);
-    background-repeat: no-repeat, no-repeat;
-    background-position: center 10px, center top;
+    background-image: url(../img/grad-headerN.png);
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 
 #myCarousel img {
@@ -276,4 +277,12 @@ footer
     width:15px;
     height:15px;
     border:none;
+}
+
+.carousel-control.left {
+    left:20px;
+}
+
+.carousel-control.right {
+    right:20px;
 }
