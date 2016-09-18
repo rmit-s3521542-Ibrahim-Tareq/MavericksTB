@@ -22,5 +22,3 @@ Route::get('/movies', 'MovieController@showDefault');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/account', 'AccountController@show');
-
-Route::auth();
