@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #topMovies-header
 {
-    font-family: 'Arimo', sans-serif; 
+    font-family: 'Arimo', sans-serif;
     font-size: 2.5em;
     font-weight: bold;
 }
@@ -81,19 +81,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .newsBox-left p:nth-of-type(1)
-{ 
+{
     font-size: 2.5em;
     color: #c5c5c5;
 }
 
 .newsBox-left p:nth-of-type(2)
-{ 
+{
     margin-top: -15px;
     font-size: 3em;
     font-weight: bold;
 }
 
-.newsBox-left a 
+.newsBox-left a
 {
     text-decoration: none;
 }
@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-.ticket 
+.ticket
 {
     background-color: gray;
     font-size: 1.2em;
@@ -141,7 +141,7 @@ i.book {
 
 #newBoxRight-header
 {
-    font-family: 'Arimo', sans-serif; 
+    font-family: 'Arimo', sans-serif;
     font-size: 2.5em;
     font-weight: bold;
     color: #c5c5c5;
@@ -150,7 +150,7 @@ i.book {
 
 .subheading
 {
-    font-family: 'Arimo', sans-serif; 
+    font-family: 'Arimo', sans-serif;
     font-size: 1.5em;
     font-weight: bold;
 }
