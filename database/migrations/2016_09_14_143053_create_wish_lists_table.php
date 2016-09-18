@@ -14,8 +14,21 @@ class CreateWishListsTable extends Migration
     {
         Schema::create('wish_lists', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('movie_id');
+            $table->integer('user_id');
+
             $table->timestamps();
         });
+
+        Schema::table('wish_lists',function ($table){
+            $table->foreign('movie_id')
+                ->references('id')
+                ->on('movies');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+        } );
     }
 
     /**
