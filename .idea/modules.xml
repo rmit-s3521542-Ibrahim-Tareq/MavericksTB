@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MavericksTB.iml" filepath="$PROJECT_DIR$/MavericksTB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MavericksTB.iml" filepath="$PROJECT_DIR$/.idea/MavericksTB.iml" />
     </modules>
   </component>
 </project>
