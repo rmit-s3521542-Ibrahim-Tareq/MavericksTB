@@ -14,7 +14,19 @@ class CreateWhatsHotsTable extends Migration
     {
         Schema::create('whats_hots', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('position');
+
+            $table->integer('movie_id');
+
             $table->timestamps();
+        });
+
+        Schema::table('whats_hots',function ($table) {
+
+            $table->foreign('movie_id')
+                ->references('id')
+                ->on('movies');
         });
     }
 

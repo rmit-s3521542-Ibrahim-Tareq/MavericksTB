@@ -1,2 +1,4 @@
 /.idea
 /vendor
+migrations/2016_09_17_091202_create_ticket_prices_table.php
+migrations/2016_09_17_102734_create_carts_table.php

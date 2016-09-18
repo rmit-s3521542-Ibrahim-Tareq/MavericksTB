@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCinemasTable extends Migration
+class CreateTicketPricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateCinemasTable extends Migration
      */
     public function up()
     {
-        Schema::create('cinemas', function (Blueprint $table) {
+        Schema::create('ticket_prices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cinema_name');
-            $table->string('location');
+            $table->string('ticket_name');
+            $table->double('ticket_price');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateCinemasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cinemas');
+        Schema::drop('ticket_prices');
     }
 }
