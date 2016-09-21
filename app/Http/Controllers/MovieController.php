@@ -10,7 +10,7 @@ use App\Http\Requests;
 class MovieController extends Controller
 {
     public function showDefault() {
-        $movies = Movies::all(['movie_name', 'genre', 'poster_url', 'imdb_rating']);
+        $movies = Movies::all(['id', 'poster_url']);
         return view('movies', ['movies' => $movies]);
     }
 
