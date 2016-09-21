@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class CartController extends Controller
+class AdminController extends Controller
 {
-
-    public function show() {
-        return view('cart');
-    }
+    /* Uncomment when logging in as admin is complete */
+    /*public function __construct()
+    {
+        $this->middleware('auth');
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -20,7 +21,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.index');
     }
 
     /**
@@ -40,6 +41,17 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         //
     }

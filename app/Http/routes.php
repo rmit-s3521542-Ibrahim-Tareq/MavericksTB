@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/', 'HomeController@show');
+Route::auth();
+
+Route::get('/', 'HomeController@index');
 
 Route::get('/cart', 'CartController@show');
 
 Route::get('/movies', 'MovieController@showDefault');
+
+Route::get('/account', 'AccountController@show');
+
+Route::get('/admin', 'AdminController@index');

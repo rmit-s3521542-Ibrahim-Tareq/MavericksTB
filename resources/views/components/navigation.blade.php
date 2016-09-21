@@ -38,8 +38,13 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                @if (Auth::guest())
+                <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                @else
+                <li><a href="{{ url('/account') }}"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                @endif
             </ul>
         </div>
     </div>

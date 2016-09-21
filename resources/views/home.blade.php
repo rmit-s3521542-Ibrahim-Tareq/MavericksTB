@@ -112,97 +112,80 @@
 
 @section('additionalJs')
 <script>
-
-	function priceValidator(quantityInput)
-	{
-		if (quantityInput.value == "")
-		{
-			quantityInput.value = 0;
-		}
-		else
-		{
-			quantityInput.value = parseInt(quantityInput.value);
-		}
-	}
-
-	function calculatePrice()
-	{
-		var ticketTable = document.getElementById("bookingTable");
-		var quantity = document.getElementsByClassName("numOfTickets");
-
-		ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 8).toFixed(2);		//Child
-		ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 14).toFixed(2);	//Adult
-		ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 12).toFixed(2);	//Senior
-		ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 10).toFixed(2);	//Concession
-
-		calculateTotalPrice();
-	}
-
-	function calculateTotalPrice()
-	{
-		var ticketTable = document.getElementById("bookingTable");
-		var totalPrice = parseFloat(0.0);
-
-		for (var i = 1; i <= 4; i++)
-		{
-			totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
-		}
-
-		document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
-	}
-
-	function openBooking(id)
-	{
-
-		if(id == 1)
-		{
-			$("#namePlaceholder").html("Suicide Squad");
-			$("#movieName").val("Suicide Squad");
-		}
-		else if(id == 2)
-		{
-			$("#namePlaceholder").html("Sausage Party");
-			$("#movieName").val("Sausage Party");
-		}
-		else if(id == 3)
-		{
-			$("#namePlaceholder").html("X-MEN Apocalypse");
-			$("#movieName").val("X-MEN Apocalypse");
-		}
-		else
-		{
-			$("#namePlaceholder").html("Sully");
-			$("#movieName").val("Sully");
-		}
-
-		$('#tilesModal').modal('show');
-	}
-
-	function resetFields()
-	{
-		var x = document.getElementsByClassName("resetMe");
-
-		for(var i = 0; i < x.length; i++)
-		{
-			x[i].value = "0";
-			x[i].innerHTML= "0.00";
-		}
-	}
-
-	$(document).ready(function()
-	{
-		/*("#submitForm").click(function(){
-		 $("#ticketform").submit(function(){
-		 alert("Submitted");
-		 });
-		 });*/
-
-
-		$("#submitForm").click(function(){
-			$('#ticketform').submit();
-		});
-
-	});
-
+    function priceValidator(quantityInput)
+    {
+        if (quantityInput.value == "")
+        {
+            quantityInput.value = 0;
+        }
+        else
+        {
+            quantityInput.value = parseInt(quantityInput.value);
+        }
+    }
+    function calculatePrice()
+    {
+        var ticketTable = document.getElementById("bookingTable");
+        var quantity = document.getElementsByClassName("numOfTickets");
+        ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 8).toFixed(2);		//Child
+        ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 14).toFixed(2);	//Adult
+        ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 12).toFixed(2);	//Senior
+        ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 10).toFixed(2);	//Concession
+        calculateTotalPrice();
+    }
+    function calculateTotalPrice()
+    {
+        var ticketTable = document.getElementById("bookingTable");
+        var totalPrice = parseFloat(0.0);
+        for (var i = 1; i <= 4; i++)
+        {
+            totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
+        }
+        document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
+    }
+    function openBooking(id)
+    {
+        if(id == 1)
+        {
+            $("#namePlaceholder").html("Suicide Squad");
+            $("#movieName").val("Suicide Squad");
+        }
+        else if(id == 2)
+        {
+            $("#namePlaceholder").html("Sausage Party");
+            $("#movieName").val("Sausage Party");
+        }
+        else if(id == 3)
+        {
+            $("#namePlaceholder").html("X-MEN Apocalypse");
+            $("#movieName").val("X-MEN Apocalypse");
+        }
+        else
+        {
+            $("#namePlaceholder").html("Sully");
+            $("#movieName").val("Sully");
+        }
+        $('#tilesModal').modal('show');
+    }
+    function resetFields()
+    {
+        var x = document.getElementsByClassName("resetMe");
+        for(var i = 0; i < x.length; i++)
+        {
+            x[i].value = "0";
+            x[i].innerHTML= "0.00";
+        }
+    }
+    $(document).ready(function()
+    {
+        /*("#submitForm").click(function(){
+         $("#ticketform").submit(function(){
+         alert("Submitted");
+         });
+         });*/
+        $("#submitForm").click(function(){
+            $('#ticketform').submit();
+        });
+    });
 </script>
 @endsection
