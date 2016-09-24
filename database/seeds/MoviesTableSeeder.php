@@ -14,7 +14,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -29,7 +29,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -44,7 +44,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -59,7 +59,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -74,7 +74,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -89,7 +89,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -104,7 +104,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
@@ -119,7 +119,7 @@ class MoviesTableSeeder extends Seeder
         DB::table('movies')->insert([
             'imdb_id' => 'tt'. str_random(8),
             'movie_name' => str_random(3) . ' ' . str_random(7) . ' ' . str_random(5),
-            'release_date' => '2000',
+            'release_date' => '1474676349',
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
