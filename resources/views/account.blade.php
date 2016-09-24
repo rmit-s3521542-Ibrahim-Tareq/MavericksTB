@@ -35,6 +35,13 @@
                                     <div class="panel-body">
                                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                     </div>
+                                    <button type="button" class="btn btn-info">Movie Details</button>
+
+                                    <!-- Indicates a successful or positive action -->
+                                    <button type="button" class="btn btn-success">Edit Booking</button>
+
+                                    <!-- Contextual button for informational alert messages -->
+                                    <button type="button" class="btn btn-danger">Cancel Booking</button>
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -55,6 +62,13 @@
                                     <div class="panel-body">
                                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                     </div>
+                                    <button type="button" class="btn btn-info">Movie Details</button>
+
+                                    <!-- Indicates a successful or positive action -->
+                                    <button type="button" class="btn btn-success">Edit Booking</button>
+
+                                    <!-- Contextual button for informational alert messages -->
+                                    <button type="button" class="btn btn-danger">Cancel Booking</button>
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -75,6 +89,15 @@
                                     <div class="panel-body">
                                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                     </div>
+
+                                    <button type="button" class="btn btn-info">Movie Details</button>
+
+                                    <!-- Indicates a successful or positive action -->
+                                    <button type="button" class="btn btn-success">Edit Booking</button>
+
+                                    <!-- Contextual button for informational alert messages -->
+                                    <button type="button" class="btn btn-danger">Cancel Booking</button>
+
                                 </div>
                             </div>
                         </div>
@@ -87,26 +110,35 @@
 
 
                     </div>
-                    <div class="col-md-6 checkout"><h4><b>Change Password</b></h4><hr></div>
+                    <div class="col-md-6 checkout"><h4><b>Change Password</b></h4><hr>
 
 
-                    <form>
-                        <div class="form-group col-md-5">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="InputEmail1" placeholder="Email">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="exampleInputPassword1">Old Password</label>
-                            <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="exampleInputPassword1">New Password</label>
-                            <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-                        </div>
-
-                        <button type="submit" style="margin-left:15px" class="btn btn-default col-md-4">Submit</button>
-                    </form>
-
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Old Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">New Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="newInputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-md-6">
+                                    <button type="submit" class="btn btn-default col-md-6">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
             </div>
