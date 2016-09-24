@@ -88,6 +88,26 @@
 
                     </div>
                     <div class="col-md-6 checkout"><h4><b>Change Password</b></h4><hr></div>
+
+
+                    <form>
+                        <div class="form-group col-md-5">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="InputEmail1" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="exampleInputPassword1">Old Password</label>
+                            <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="exampleInputPassword1">New Password</label>
+                            <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+                        </div>
+
+                        <button type="submit" style="margin-left:15px" class="btn btn-default col-md-4">Submit</button>
+                    </form>
+
+
                 </div>
             </div>
         </div>
