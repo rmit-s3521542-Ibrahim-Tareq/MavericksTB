@@ -23,3 +23,6 @@ Route::post('/movies', 'MovieController@loadMovies');
 Route::get('/account', 'AccountController@show');
 
 Route::get('/admin', 'AdminController@index');
+
+Route::get('/search', 'SearchController@process');
+Route::get('/search/{term}', ['uses' => 'SearchController@search']);

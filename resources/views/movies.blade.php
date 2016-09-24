@@ -40,6 +40,7 @@
                                 <p><b>Film Runtime: </b><span id="mRuntime"></span> minutes</p>
                                 <p><b>Release Date: </b><span id="mReleaseDate"></span></p>
                                 <p><b>Genre: </b><span id="mGenre"></span></p>
+                                <p><b>Actors: </b><span id="mActors"></span></p>
                                 <p><b>IMDB Rating: </b><span id="mIMDBRating"></span>/10</p>
                                 <p><span id="mRating"></span></p>
                             </div>
@@ -47,11 +48,74 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="book">
                         <div class="mComingSoon">
-                            <h3>This movie has not been released Yet!</h3>
+                            <h3>This movie has not been released yet.</h3>
                             <a class="btn btn-info">Add to wish list</a>
                         </div>
                         <div class="mShowing">
+                            <form role="form" id="ticketform" action="{!! url('/cart') !!}" method="post">
+                                <div class="modal-body">
+                                    <input type="hidden" name="movieName" id="movieName">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                                    <div class="row cinemaSession" style="margin-top:20px;">
+                                        <div class="col-lg-6">
+                                            <p>Cinema location: </p>
+                                            <select class="form-control input-sm" name="location">
+                                                <option selected disabled hidden style='display: none' value=''></option>
+                                                <option value="melbCentral">Melbourne Central</option>
+                                                <option value="watergardens">Watergardens</option>
+                                                <option value="northlands">Northlands</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Session Time: </p>
+                                            <select class="form-control input-sm" name="time">
+                                                <option selected disabled hidden style='display: none' value=''></option>
+                                                <option value="monday">Monday, 2-5pm</option>
+                                                <option value="wednesday">Wednesday, 5-7pm</option>
+                                                <option value="friday">Friday, 8-10pm</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
+                                    <div class="row">
+                                        <table id="bookingTable" class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Ticket Type</th>
+                                                <th>Quantity</th>
+                                                <th>Subtotal Price</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Child</td>
+                                                <td><input type="number" name="child" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Adult</td>
+                                                <td><input type="number" name="adult" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Seniors</td>
+                                                <td><input type="number" name="senior" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Concession</td>
+                                                <td><input type="number" name="concession" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <p class="text-right" style="font-size:2em;padding-top:10px;padding-right:50px;margin-bottom:-10px;">Grand Total: <span id="totalPrice" class="resetMe"></span></p>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button type="button" id="submitForm" class="btn btn-default">Add to cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,12 +195,14 @@
 
                 $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url({{url('/')}}/img/'+data['poster_url']+')');
                 $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
+                $('#movieOverlay.overlay #movieName').text(data['movie_name']);
                 $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
                 $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
                 $("#movieOverlay.overlay span#mGenre").text(data['genre']);
                 $("#movieOverlay.overlay span#mReleaseDate").text(formatTimestamp(data['release_date']*1));
                 $("#movieOverlay.overlay #mYoutube").attr('src', data['youtube_url']);
                 $("#movieOverlay.overlay span#mIMDBRating").text(data['imdb_rating']);
+                $("#movieOverlay.overlay span#mActors").text(data['actors']);
 
                 var className = "";
                 switch(data['rating']) {
