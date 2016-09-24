@@ -13,7 +13,7 @@ class MovieController extends Controller
     }
 
     public function loadMovies(Request $r) {
-        $movies = Movies::all(['id', 'poster_url', 'release_date', 'movie_name']);
+        $movies = Movies::all(['id', 'poster_url', 'release_date', 'movie_name', 'sypnosis', 'actors', 'rating', 'runtime']);
 
         $soon = array();
         $current = array();

@@ -115,6 +115,29 @@
 
         checkHash();
 
+        function createClicker(toAppend, data, soon) {
+            var soon = soon || false;
+            toAppend.on("click", function() {
+                var overlay = $('<div class="overlay"><div class="imgOverlay" style="background-image:url({{url('/')}}/img/'+data['poster_url']+')"></div><div class="box"><h1>'+data['movie_name']+'</h1><div class="content"></div></div></div>');
+
+                overlay.find('.content').html('<ul class="nav nav-tabs" role="tablist"><li role="presentation" class="active"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li><li role="presentation"><a href="#book" aria-controls="book" role="tab" data-toggle="tab">Book Tickets</a></li><li class="pull-right closeOverlay"><a class="glyphicon glyphicon-remove"></a></li></ul>');
+
+                overlay.find('.content').append('<div class="tab-content"><div role="tabpanel" class="tab-pane active" id="details"><div class="row"><div class="col-md-8"><p>'+data['sypnosis']+'</div><div class="col-md-4">RIGHT</div></div></div><div role="tabpanel" class="tab-pane" id="book">BOOK</div></div>');
+
+                overlay.find('.closeOverlay').on('click', function() {
+                    overlay.removeClass('show').delay(500).queue(function(next) {
+                        overlay.remove();
+                        next();
+                    });
+                });
+
+                $("body").prepend(overlay).delay(0).queue(function(next) {
+                    overlay.addClass("show");
+                    next();
+                });
+            });
+        }
+
         $.ajax({
             method: "POST",
             dataType: "JSON",
@@ -129,8 +152,10 @@
                 else {
                     $(".notifOne").hide();
                     for(var e in data[0]) {
-                        $(".nowshowingTab.tab-pane").append('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[0][e]['poster_url']+'" class="img-thumbnail" alt="'+data[0][e]['movie_name']+'" width="290" height="200" /></div>');
+                        var toAppend = $('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[0][e]['poster_url']+'" class="img-thumbnail" alt="'+data[0][e]['movie_name']+'" width="290" height="200" /></div>');
+                        toAppend.appendTo($('.nowshowingTab.tab-pane'));
                         movies.push(data[0][e]);
+                        createClicker(toAppend, data[0][e]);
                     }
                 }
 
@@ -141,8 +166,10 @@
                 else {
                     $(".notifTwo").hide();
                     for(var e in data[1]) {
-                        $(".comingsoonTab.tab-pane").append('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[1][e]['poster_url']+'" class="img-thumbnail" alt="'+data[1][e]['movie_name']+'" width="290" height="200" /></div>');
+                        var toAppend = $('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[1][e]['poster_url']+'" class="img-thumbnail" alt="'+data[1][e]['movie_name']+'" width="290" height="200" /></div>');
+                        toAppend.appendTo($('.comingsoonTab.tab-pane'));
                         movies.push(data[1][e]);
+                        createClicker(toAppend, data[1][e]);
                     }
                 }
             },
