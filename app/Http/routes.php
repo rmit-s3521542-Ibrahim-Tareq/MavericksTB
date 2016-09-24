@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/cart', 'CartController@show');
 
 Route::get('/movies', 'MovieController@showDefault');
+Route::post('/movies', 'MovieController@loadMovies');
 
 Route::get('/account', 'AccountController@show');
 

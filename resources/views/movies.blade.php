@@ -4,24 +4,15 @@
 <div class="container movieTabs">
     <ul class="nav nav-pills">
         <li class="nowshowingTab"><a href="#showing"><h1>Now Showing</h1></a></li>
-        <li class="comingsoonTab"><a href="#soon"><h1>Coming Soon</h1></a>
-        </li>
+        <li class="comingsoonTab"><a href="#soon"><h1>Coming Soon</h1></a></li>
     </ul>
     <hr/>
     <div class="tab-content clearfix">
         <div class="tab-pane nowshowingTab">
-            @if(count($movies) < 1)
-            <p style="text-align:center;">There are no movies to display.</p>
-            @else
-                @foreach ($movies as $m)
-                <div class="col-lg-3 boxHits">
-                    <img src="{{url('/')}}/img/{{$m['poster_url']}}" class="img-thumbnail" alt="sully" width="290" height="200" />
-                </div>
-                @endforeach
-            @endif
+            <p style="text-align:center;" class="notif notifOne">There are no movies to display.</p>
         </div>
         <div class="tab-pane comingsoonTab">
-
+            <p style="text-align:center;" class="notif notifTwo">There are no movies to display.</p>
         </div>
     </div>
 </div>
@@ -102,7 +93,6 @@
 @section('additionalJs')
 <script>
     function checkHash() {
-        console.log('in');
         var hash = window.location.hash.substr(1);
         if (hash.length > 0) {
             if (hash == "soon") {
@@ -121,10 +111,44 @@
     }
 
     $(document).ready(function() {
+        var movies = [];
+
         checkHash();
 
-        $('body').on('click', function() {
-            $('.overlay').addClass("show");
+        $.ajax({
+            method: "POST",
+            dataType: "JSON",
+            url: "{{url('/movies')}}",
+            data: { },
+            success: function(data) {
+                movies = [];
+
+                if(data[0].length < 1) {
+                    $(".notifOne").show().text("There are no movies to display.");
+                }
+                else {
+                    $(".notifOne").hide();
+                    for(var e in data[0]) {
+                        $(".nowshowingTab.tab-pane").append('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[0][e]['poster_url']+'" class="img-thumbnail" alt="'+data[0][e]['movie_name']+'" width="290" height="200" /></div>');
+                        movies.push(data[0][e]);
+                    }
+                }
+
+
+                if(data[1].length < 1) {
+                    $(".notifTwo").show().text("There are no movies to display.");
+                }
+                else {
+                    $(".notifTwo").hide();
+                    for(var e in data[1]) {
+                        $(".comingsoonTab.tab-pane").append('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[1][e]['poster_url']+'" class="img-thumbnail" alt="'+data[1][e]['movie_name']+'" width="290" height="200" /></div>');
+                        movies.push(data[1][e]);
+                    }
+                }
+            },
+            error: function() {
+                $(".notif").show().text("An error occurred. Please try again.");
+            }
         });
     });
 
