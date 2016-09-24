@@ -10,12 +10,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="moment.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    function formatTimestamp(timestamp) {
+        var date = moment(timestamp).format("Do MMMM YYYY");
+        return date;
+    }
 </script>
 
 @yield('additionalJs')

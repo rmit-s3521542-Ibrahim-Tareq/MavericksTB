@@ -17,50 +17,43 @@
     </div>
 </div>
 
-<div class="overlay">
-    <div class="imgOverlay" style="background-image:url({{url('/')}}/img/sausage.jpg)"></div>
+<div class="overlay" id="movieOverlay">
+    <div class="imgOverlay"></div>
         <div class="box">
-            <h1>Movie Name</h1>
+            <h1 id="mMovieName"></h1>
             <div class="content">
-                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci odit pariatur quasi saepe similique.
-                    Corporis, expedita, quo? Aliquid commodi delectus, doloribus illum in, placeat praesentium repellendus
-                    rerum tenetur voluptates voluptatibus!
-                </div>
-                <div>Autem cupiditate dolore incidunt libero magni nemo placeat recusandae tempore vitae! Consequuntur
-                    debitis distinctio eaque eius excepturi ipsa, nobis pariatur? Atque beatae dolores, eligendi incidunt
-                    maiores repudiandae saepe similique sit.
-                </div>
-                <div>A consectetur dolorem doloremque doloribus eveniet, illum ipsam modi neque nobis nulla numquam officia
-                    officiis optio provident quo recusandae rerum soluta unde? Aliquid eius eveniet impedit omnis pariatur
-                    quasi ut!
-                </div>
-                <div>Aliquam architecto assumenda aut beatae, culpa dignissimos dolore dolorum eius eum hic magni neque
-                    nihil odio omnis, quis reiciendis unde voluptas, voluptatum? Architecto fuga inventore omnis pariatur
-                    reprehenderit vero voluptatibus!
-                </div>
-                <div>Alias blanditiis illum laboriosam sed temporibus. Accusamus consequuntur cum cupiditate delectus
-                    deleniti dolorem eligendi, enim facilis hic illum laboriosam magni maiores maxime modi molestiae nisi
-                    ratione sequi tenetur, totam vitae?
-                </div>
-                <div>Accusantium consequuntur cupiditate distinctio dolore eius libero molestiae nemo odit porro quidem
-                    reprehenderit saepe, sed, veritatis. Cupiditate ea fugiat, ipsum maiores minima necessitatibus nemo
-                    nostrum, numquam pariatur porro quidem reprehenderit?
-                </div>
-                <div>Ducimus et facilis sapiente. Ad animi corporis dolorem. Assumenda, cumque dolorum ducimus esse
-                    excepturi fuga fugit incidunt inventore ipsam ipsum laborum libero magni nesciunt nihil odio pariatur
-                    possimus quisquam veritatis.
-                </div>
-                <div>Ab blanditiis commodi dolor ducimus facilis illo impedit in iure, iusto labore, maiores mollitia nam
-                    neque nisi pariatur repudiandae, similique sint ullam vel voluptates. Eaque illum ipsam officiis
-                    possimus sint.
-                </div>
-                <div>A accusamus, aperiam asperiores assumenda delectus dignissimos ea eaque eligendi impedit laborum,
-                    laudantium libero molestias necessitatibus non quis repellendus sapiente ullam vero. Accusamus aliquam
-                    consequuntur deserunt dolor eaque ullam voluptates.
-                </div>
-                <div>A ab adipisci alias aliquam delectus deleniti distinctio doloremque ea enim est illo laboriosam laborum
-                    maiores neque nesciunt nobis perferendis quae qui ratione, recusandae sed tempora totam voluptatum! Est,
-                    perferendis.
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+                    <li role="presentation"><a href="#book" aria-controls="book" role="tab" data-toggle="tab">Book Tickets</a></li>
+                    <li class="pull-right closeOverlay"><a class="glyphicon glyphicon-remove"></a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="details">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p id="mSypnosis"></p>
+                                <hr/>
+                                <iframe style="width:100%; height:400px;" target="_parent" frameborder="0" id="mYoutube"></iframe>
+                            </div>
+                            <div class="col-md-4">
+                                <p><b>Film Runtime: </b><span id="mRuntime"></span> minutes</p>
+                                <p><b>Release Date: </b><span id="mReleaseDate"></span></p>
+                                <p><b>Genre: </b><span id="mGenre"></span></p>
+                                <p><b>IMDB Rating: </b><span id="mIMDBRating"></span>/10</p>
+                                <p><span id="mRating"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="book">
+                        <div class="mComingSoon">
+                            <h3>This movie has not been released Yet!</h3>
+                            <a class="btn btn-info">Add to wish list</a>
+                        </div>
+                        <div class="mShowing">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,6 +63,10 @@
 
 @section('additionalCss')
 <style>
+    .mComingSoon, .mShowing {
+        display:none;
+    }
+
     .movieTabs {
         padding-top:50px;
     }
@@ -112,29 +109,49 @@
 
     $(document).ready(function() {
         var movies = [];
+        var cinemas = [];
 
         checkHash();
+
+        $("#movieOverlay.overlay .closeOverlay").on("click", function() {
+            $("#movieOverlay").removeClass("show");
+        });
 
         function createClicker(toAppend, data, soon) {
             var soon = soon || false;
             toAppend.on("click", function() {
-                var overlay = $('<div class="overlay"><div class="imgOverlay" style="background-image:url({{url('/')}}/img/'+data['poster_url']+')"></div><div class="box"><h1>'+data['movie_name']+'</h1><div class="content"></div></div></div>');
+                if(!soon) {
+                    $('.mComingSoon').hide();
+                    $('.mShowing').show();
+                }
+                else {
+                    $('.mComingSoon').show();
+                    $('.mShowing').hide();
+                }
 
-                overlay.find('.content').html('<ul class="nav nav-tabs" role="tablist"><li role="presentation" class="active"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li><li role="presentation"><a href="#book" aria-controls="book" role="tab" data-toggle="tab">Book Tickets</a></li><li class="pull-right closeOverlay"><a class="glyphicon glyphicon-remove"></a></li></ul>');
+                $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url({{url('/')}}/img/'+data['poster_url']+')');
+                $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
+                $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
+                $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
+                $("#movieOverlay.overlay span#mGenre").text(data['genre']);
+                $("#movieOverlay.overlay span#mReleaseDate").text(formatTimestamp(data['release_date']*1));
+                $("#movieOverlay.overlay #mYoutube").attr('src', data['youtube_url']);
+                $("#movieOverlay.overlay span#mIMDBRating").text(data['imdb_rating']);
 
-                overlay.find('.content').append('<div class="tab-content"><div role="tabpanel" class="tab-pane active" id="details"><div class="row"><div class="col-md-8"><p>'+data['sypnosis']+'</div><div class="col-md-4">RIGHT</div></div></div><div role="tabpanel" class="tab-pane" id="book">BOOK</div></div>');
+                var className = "";
+                switch(data['rating']) {
+                    case "G": className="ratingG"; break;
+                    case "PG": className="ratingPG"; break;
+                    case "M": className="ratingM"; break;
+                    case "MA": className="ratingMA"; break;
+                    case "R": className="ratingR"; break;
+                    default:
+                    case "Unrated": className="ratingUnrated"; break;
+                }
+                $("#movieOverlay.overlay span#mRating").text(data['rating']);
+                $("#movieOverlay.overlay span#mRating").attr('class', className);
 
-                overlay.find('.closeOverlay').on('click', function() {
-                    overlay.removeClass('show').delay(500).queue(function(next) {
-                        overlay.remove();
-                        next();
-                    });
-                });
-
-                $("body").prepend(overlay).delay(0).queue(function(next) {
-                    overlay.addClass("show");
-                    next();
-                });
+                $("#movieOverlay").addClass("show");
             });
         }
 
@@ -145,6 +162,7 @@
             data: { },
             success: function(data) {
                 movies = [];
+                cinemas = data[2];
 
                 if(data[0].length < 1) {
                     $(".notifOne").show().text("There are no movies to display.");
@@ -169,7 +187,7 @@
                         var toAppend = $('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/'+data[1][e]['poster_url']+'" class="img-thumbnail" alt="'+data[1][e]['movie_name']+'" width="290" height="200" /></div>');
                         toAppend.appendTo($('.comingsoonTab.tab-pane'));
                         movies.push(data[1][e]);
-                        createClicker(toAppend, data[1][e]);
+                        createClicker(toAppend, data[1][e], true);
                     }
                 }
             },
