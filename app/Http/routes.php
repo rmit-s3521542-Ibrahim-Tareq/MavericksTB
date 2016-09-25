@@ -13,12 +13,21 @@
 
 Route::auth();
 
+Route::resource('cart', 'CartController');
+
 Route::get('/', 'HomeController@index');
 
-Route::get('/cart', 'CartController@show');
+Route::post('/payment', 'PaymentController@index');
+
+//Route::get('/cart', 'CartController@show');
+//Route::post('/cart', 'CartController@show'); ////////
 
 Route::get('/movies', 'MovieController@showDefault');
+Route::post('/movies', 'MovieController@loadMovies');
 
 Route::get('/account', 'AccountController@show');
 
 Route::get('/admin', 'AdminController@index');
+
+Route::get('/search', 'SearchController@process');
+Route::get('/search/{term}', ['uses' => 'SearchController@search']);

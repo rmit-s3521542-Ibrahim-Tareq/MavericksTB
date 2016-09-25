@@ -8,11 +8,13 @@ body
 * {
     position:relative;
     box-sizing:border-box;
+    word-wrap:break-word;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight:300;
     font-family:'Roboto', sans-serif;
+    text-shadow:0px 1px 1px #000000;
 }
 
 .container {
@@ -372,7 +374,7 @@ div.overlay div.box > h1 small span {
 
 div.overlay div.box > div.content {
     background-color:rgba(255,255,255,0.3);
-    padding:10px 20px;
+    padding:5px 0px;
     width:calc(100% - 40px);
     margin:auto;
     color:#FFFFFF;
@@ -381,6 +383,14 @@ div.overlay div.box > div.content {
     max-height:calc(100% - 150px);
     overflow-x:hidden;
     overflow-y:auto;
+}
+
+div.overlay div.box > div.content .nav-tabs {
+    padding:0px 5px;
+}
+
+div.overlay div.box > div.content .tab-pane {
+    padding:10px 20px;
 }
 
 div.overlay > div.imgOverlay {
@@ -414,6 +424,55 @@ div.overlay.changeSeats div.box {
 }
 
 
+
+
+
+
+
+
+
+/* Movie Ratings */
+
+/* Movie warnings */
+span.ratingG, span.ratingPG, span.ratingM, span.ratingMA, span.ratingR, span.ratingUnrated {
+    text-decoration:uppercase;
+    color:#000000;
+    font-weight:600;
+    font-size:1.5em;
+    padding:5px 15px;
+    border-radius:3px 3px 3px 3px;
+    -moz-border-radius:3px 3px 3px 3px;
+    border:1px solid #FFFFFF;
+}
+
+span.ratingG {
+    background-color:#18a528;
+    color:#ffffff;
+}
+
+span.ratingPG {
+    background-color:#FFFF00;
+}
+
+span.ratingM {
+    background-color:#1989f7;
+    color:#ffffff;
+}
+
+span.ratingMA {
+    background-color:#FF0000;
+    color:#FFFFFF;
+}
+
+span.ratingR {
+    background-color:#8b19f7;
+    color:#ffffff;
+}
+
+span.ratingUnrated {
+    background-color:#FFFFFF;
+    border:1px solid #000000;
+}
 
 
 
