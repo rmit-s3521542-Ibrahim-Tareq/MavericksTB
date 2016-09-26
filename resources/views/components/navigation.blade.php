@@ -23,7 +23,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ url('/movies') }}">Movies</a></li>
-                <li><a href="{{ action('CartController@show') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

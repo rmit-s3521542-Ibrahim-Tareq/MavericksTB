@@ -111,12 +111,23 @@
                 <h4 class="modal-title">Ticket Booking</h4>
             </div>
 
-            <form role="form" id="ticketform" action="{!! url('/cart') !!}" method="post">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {!! Form::open(array('route' => 'cart.store','method'=>'POST')) !!}
                 <div class="modal-body">
                     <div class="text-center row">
                         <div class="col-lg-12" style="font-size:1.5em;">
                             <p>Movie Name: <span id="namePlaceholder"></span></p>
-                            <input type="hidden" name="movieName" id="movieName">
+                            <input type="hidden" name="moviename" id="movieName">
                         </div>
                     </div>
                     <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
@@ -125,18 +136,18 @@
                             <p>Cinema location: </p>
                             <select class="form-control input-sm" name="location">
                                 <option selected disabled hidden style='display: none' value=''></option>
-                                <option value="melbCentral">Melbourne Central</option>
-                                <option value="watergardens">Watergardens</option>
-                                <option value="northlands">Northlands</option>
+                                <option value="Melbourne Central">Melbourne Central</option>
+                                <option value="Watergardens">Watergardens</option>
+                                <option value="Northlands">Northlands</option>
                             </select>
                         </div>
                         <div class="col-lg-6">
                             <p>Session Time: </p>
                             <select class="form-control input-sm" name="time">
                                 <option selected disabled hidden style='display: none' value=''></option>
-                                <option value="monday">Monday, 2-5pm</option>
-                                <option value="wednesday">Wednesday, 5-7pm</option>
-                                <option value="friday">Friday, 8-10pm</option>
+                                <option value="Monday, 2-5pm">Monday, 2-5pm</option>
+                                <option value="Wednesday, 5-7pm">Wednesday, 5-7pm</option>
+                                <option value="Friday, 8-10pm">Friday, 8-10pm</option>
                             </select>
                         </div>
                     </div>
@@ -153,22 +164,22 @@
                             <tbody>
                             <tr>
                                 <td>Child</td>
-                                <td><input type="number" name="child" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                <td><input type="number" name="childticket" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                 <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                             </tr>
                             <tr>
                                 <td>Adult</td>
-                                <td><input type="number" name="adult" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                <td><input type="number" name="adulticket" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                 <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                             </tr>
                             <tr>
                                 <td>Seniors</td>
-                                <td><input type="number" name="senior" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                <td><input type="number" name="seniorticket" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                 <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                             </tr>
                             <tr>
                                 <td>Concession</td>
-                                <td><input type="number" name="concession" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                <td><input type="number" name="concessionticket" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                 <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                             </tr>
                             </tbody>
@@ -176,10 +187,11 @@
                         <p class="text-right" style="font-size:2em;padding-top:10px;padding-right:50px;margin-bottom:-10px;">Grand Total: <span id="totalPrice" class="resetMe"></span></p>
                     </div>
                 </div>
-            </form>
-            <div class="modal-footer">
-                <button type="button" id="submitForm" class="btn btn-default">Add to cart</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" id="submitForm" class="btn btn-default">Add to cart</button>
+                </div>
+            {!! Form::close() !!}
+
         </div>
 
     </div>

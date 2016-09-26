@@ -67,7 +67,7 @@
     </div>
     <div class="row">
         <div class="paymentInfo text-center">
-            Total Payment Value: <span></span>
+            Total Payment Value: <span>${{ $total }}</span>
         </div>
     </div>
     <div class="row details">
