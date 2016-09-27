@@ -25,7 +25,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
                     <li role="presentation"><a href="#book" aria-controls="book" role="tab" data-toggle="tab">Book Tickets</a></li>
-                    <li class="pull-right closeOverlay"><a class="glyphicon glyphicon-remove"></a></li>
+                    <li class="pull-right closeOverlay" onclick="resetFields()"><a class="glyphicon glyphicon-remove"></a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -52,70 +52,60 @@
                             <a class="btn btn-info">Add to wish list</a>
                         </div>
                         <div class="mShowing">
-                            <form role="form" id="ticketform" action="{!! url('/cart') !!}" method="post">
-                                <div class="modal-body">
-                                    <input type="hidden" name="movieName" id="movieName">
-                                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-                                    <div class="row cinemaSession" style="margin-top:20px;">
-                                        <div class="col-lg-6">
-                                            <p>Cinema location: </p>
-                                            <select class="form-control input-sm" name="location">
-                                                <option selected disabled hidden style='display: none' value=''></option>
-                                                <option value="melbCentral">Melbourne Central</option>
-                                                <option value="watergardens">Watergardens</option>
-                                                <option value="northlands">Northlands</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>Session Time: </p>
-                                            <select class="form-control input-sm" name="time">
-                                                <option selected disabled hidden style='display: none' value=''></option>
-                                                <option value="monday">Monday, 2-5pm</option>
-                                                <option value="wednesday">Wednesday, 5-7pm</option>
-                                                <option value="friday">Friday, 8-10pm</option>
-                                            </select>
-                                        </div>
+                            {!! Form::open(array('route' => 'cart.store','method'=>'POST')) !!}
+                            <div class="modal-body">
+                                <input type="hidden" name="movieName" id="movieName">
+                                <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                                <div class="row cinemaSession" style="margin-top:20px;">
+                                    <div class="col-lg-6">
+                                        <p>Cinema location: </p>
+                                        <select class="form-control input-sm" name="location" id="mLocation"></select>
                                     </div>
-
-                                    <div class="row">
-                                        <table id="bookingTable" class="table table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th>Ticket Type</th>
-                                                <th>Quantity</th>
-                                                <th>Subtotal Price</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Child</td>
-                                                <td><input type="number" name="child" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Adult</td>
-                                                <td><input type="number" name="adult" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Seniors</td>
-                                                <td><input type="number" name="senior" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Concession</td>
-                                                <td><input type="number" name="concession" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
-                                                <td>$<span class="subtotalPrice resetMe">0.00</span></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <p class="text-right" style="font-size:2em;padding-top:10px;padding-right:50px;margin-bottom:-10px;">Grand Total: <span id="totalPrice" class="resetMe"></span></p>
+                                    <div class="col-lg-6">
+                                        <p>Session Time: </p>
+                                        <select class="form-control input-sm" name="time" id="mTime"></select>
                                     </div>
                                 </div>
-                            </form>
+
+                                <div class="row">
+                                    <table id="bookingTable" class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Ticket Type</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal Price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Child</td>
+                                            <td><input type="number" value="0" name="child" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Adult</td>
+                                            <td><input type="number" value="0" name="adult" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Seniors</td>
+                                            <td><input type="number" value="0" name="senior" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Concession</td>
+                                            <td><input type="number" value="0" name="concession" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td>$<span class="subtotalPrice resetMe">0.00</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="text-right" style="font-size:2em;padding-top:10px;padding-right:50px;margin-bottom:-10px;">Grand Total: <span id="totalPrice" class="resetMe">$0.00</span></p>
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" id="submitForm" class="btn btn-default">Add to cart</button>
                             </div>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
@@ -153,6 +143,48 @@
 
 @section('additionalJs')
 <script>
+    function priceValidator(quantityInput)
+    {
+        if (quantityInput.value == "")
+        {
+            quantityInput.value = 0;
+        }
+        else
+        {
+            quantityInput.value = parseInt(quantityInput.value);
+        }
+    }
+    function calculatePrice()
+    {
+        var ticketTable = document.getElementById("bookingTable");
+        var quantity = document.getElementsByClassName("numOfTickets");
+        ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 8).toFixed(2);		//Child
+        ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 14).toFixed(2);	//Adult
+        ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 12).toFixed(2);	//Senior
+        ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 10).toFixed(2);	//Concession
+        calculateTotalPrice();
+    }
+    function calculateTotalPrice()
+    {
+        var ticketTable = document.getElementById("bookingTable");
+        var totalPrice = parseFloat(0.0);
+        for (var i = 1; i <= 4; i++)
+        {
+            totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
+        }
+        document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
+    }
+    function resetFields()
+    {
+        var x = document.getElementsByClassName("resetMe");
+        for(var i = 0; i < x.length; i++)
+        {
+            x[i].value = "0";
+            x[i].innerHTML= "0.00";
+        }
+    }
+
+
     function checkHash() {
         var hash = window.location.hash.substr(1);
         if (hash.length > 0) {
@@ -174,16 +206,42 @@
     $(document).ready(function() {
         var movies = [];
         var cinemas = [];
+        var sessions = [];
+
+        var selectedCinema = -1;
+        var selectedTime = -1;
+        var selectedMovie = "";
+
+        $("#mLocation").on("change", function() {
+            selectedCinema = this.value;
+            selectedTime = -1;
+
+            $("#mTime").html('<option selected disabled>You must first select a cinema</option>');
+            for(var e in sessions) {
+                if(sessions[e]['cinema_id'] == cinemas[selectedCinema]['id'] && sessions[e]['movie_id'] == selectedMovie) {
+                    $("#mTime").append('<option value="'+e+'">'+sessions[e]['session_time']+'</option>');
+                }
+            }
+        });
+        $("#mTime").on("change", function() {
+            selectedTime = this.value;
+        });
 
         checkHash();
 
         $("#movieOverlay.overlay .closeOverlay").on("click", function() {
             $("#movieOverlay").removeClass("show");
+            selectedMovie = "";
+
+            $("#mLocation").val(-1);
+            $("#mTime").html('<option selected disabled>You must first select a cinema</option>');
+
         });
 
         function createClicker(toAppend, data, soon) {
             var soon = soon || false;
             toAppend.on("click", function() {
+                selectedMovie = data['id'];
                 if(!soon) {
                     $('.mComingSoon').hide();
                     $('.mShowing').show();
@@ -195,7 +253,7 @@
 
                 $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url({{url('/')}}/img/'+data['poster_url']+')');
                 $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
-                $('#movieOverlay.overlay #movieName').text(data['movie_name']);
+                $('#movieOverlay.overlay #movieName').val(data['movie_name']);
                 $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
                 $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
                 $("#movieOverlay.overlay span#mGenre").text(data['genre']);
@@ -229,6 +287,14 @@
             success: function(data) {
                 movies = [];
                 cinemas = data[2];
+                sessions = data[3];
+
+                $("#mLocation").html('<option value="-1" selected disabled>Select a cinema</option>');
+                for(var e in cinemas) {
+                    $("#mLocation").append('<option value="'+e+'">'+cinemas[e]['cinema_name']+'</option>');
+                }
+
+                $("#mTime").html('<option selected disabled>You must first select a cinema</option>');
 
                 if(data[0].length < 1) {
                     $(".notifOne").show().text("There are no movies to display.");
@@ -260,6 +326,10 @@
             error: function() {
                 $(".notif").show().text("An error occurred. Please try again.");
             }
+        });
+
+        $("#submitForm").click(function(){
+            $('#ticketform').submit();
         });
     });
 

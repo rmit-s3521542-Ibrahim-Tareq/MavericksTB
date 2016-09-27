@@ -98,7 +98,7 @@ class MoviesTableSeeder extends Seeder
             'genre' => 'Horror',
             'sypnosis' => str_random(150),
             'actors' => '',
-            'poster_url' => 'sausage.jpg',
+            'poster_url' => 'squad.jpg',
             'rating' => 'R',
             'imdb_rating' => '8',
             'runtime' => 90,
@@ -139,6 +139,56 @@ class MoviesTableSeeder extends Seeder
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
         ]);
 
+
+
+
+
+
+
+
+
+
+
+
+
+        DB::table('cinemas')->insert([
+            'cinema_name' => 'Melbourne Central',
+            'location' => 'Melbourne CBD - Swanston Street'
+        ]);
+
+        DB::table('cinemas')->insert([
+            'cinema_name' => 'Watergardens',
+            'location' => 'Watergardens'
+        ]);
+
+        DB::table('cinemas')->insert([
+            'cinema_name' => 'Northland',
+            'location' => 'Northland'
+        ]);
+
+
+
+
+
+
+
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday, 2 - 5PM',
+            'movie_id' => 6,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday, 5 - 7PM',
+            'movie_id' => 6,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday, 8 - 10PM',
+            'movie_id' => 6,
+            'cinema_id' => 1
+        ]);
 
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movies;
 use App\Models\Cinemas;
+use App\Models\SessionTimes;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -16,6 +17,7 @@ class MovieController extends Controller
     public function loadMovies(Request $r) {
         $movies = Movies::all(['id', 'poster_url', 'release_date', 'youtube_url', 'imdb_rating', 'rating', 'actors', 'movie_name', 'sypnosis', 'actors', 'rating', 'runtime', 'genre']);
         $cinemas = Cinemas::all(['id', 'cinema_name', 'location']);
+        $sessions = SessionTimes::all(['id', 'session_time', 'movie_id', 'cinema_id']);
 
         $soon = array();
         $current = array();
@@ -29,6 +31,6 @@ class MovieController extends Controller
                 array_push($soon, $m);
             }
         }
-        return json_encode(array($current, $soon, $cinemas));
+        return json_encode(array($current, $soon, $cinemas, $sessions));
     }
 }
