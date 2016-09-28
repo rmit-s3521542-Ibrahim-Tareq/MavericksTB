@@ -100,11 +100,10 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!--
 <div class="modal fade" id="tilesModal" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" onclick="resetFields()">&times;</button>
@@ -122,7 +121,6 @@
                 </div>
             @endif
 
-            {!! Form::open(array('route' => 'cart.store','method'=>'POST')) !!}
                 <div class="modal-body">
                     <div class="text-center row">
                         <div class="col-lg-12" style="font-size:1.5em;">
@@ -190,9 +188,9 @@
                 <div class="modal-footer">
                     <button type="submit" id="submitForm" class="btn btn-default">Add to cart</button>
                 </div>
-            {!! Form::close() !!}
 
         </div>
 
     </div>
 </div>
+-->

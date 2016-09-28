@@ -52,9 +52,9 @@
                             <a class="btn btn-info">Add to wish list</a>
                         </div>
                         <div class="mShowing">
-                            {!! Form::open(array('route' => 'cart.store','method'=>'POST')) !!}
+                            {!! Form::open(array('action' => 'CartController@store','method'=>'POST', 'id' => 'ticketForm')) !!}
                             <div class="modal-body">
-                                <input type="hidden" name="movieName" id="movieName">
+                                <input type="hidden" name="moviename" id="movieName"/>
                                 <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                                 <div class="row cinemaSession" style="margin-top:20px;">
                                     <div class="col-lg-6">
@@ -79,22 +79,22 @@
                                         <tbody>
                                         <tr>
                                             <td>Child</td>
-                                            <td><input type="number" value="0" name="child" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td><input type="number" value="0" name="childticket" min="0" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                             <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                                         </tr>
                                         <tr>
                                             <td>Adult</td>
-                                            <td><input type="number" value="0" name="adult" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td><input type="number" value="0" name="adulticket" min="0" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                             <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                                         </tr>
                                         <tr>
                                             <td>Seniors</td>
-                                            <td><input type="number" value="0" name="senior" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td><input type="number" value="0" name="seniorticket" min="0" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                             <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                                         </tr>
                                         <tr>
                                             <td>Concession</td>
-                                            <td><input type="number" value="0" name="concession" min="1" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+                                            <td><input type="number" value="0" name="concessionticket" min="0" max="10" class="numOfTickets resetMe" onchange="priceValidator(this);calculatePrice()" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
                                             <td>$<span class="subtotalPrice resetMe">0.00</span></td>
                                         </tr>
                                         </tbody>
@@ -329,7 +329,7 @@
         });
 
         $("#submitForm").click(function(){
-            $('#ticketform').submit();
+            $('#ticketForm').submit();
         });
     });
 
