@@ -29,3 +29,6 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/search', 'SearchController@process');
 Route::get('/search/{term}', ['uses' => 'SearchController@search']);
+Route::get('/fbLogin', 'AuthController@loginWithFacebook');
+Route::get('returnauth', 'AuthController@handleProviderCallback');
+
