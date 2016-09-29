@@ -111,7 +111,7 @@ class CartController extends Controller
         ]);
 
         Tickets::create($request->all());
-        return redirect()->route('cart.index');
+        return redirect()->action('CartController@index');
     }
 
     /**
@@ -136,7 +136,7 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         Tickets::find($id)->update($request->all());
-        return redirect()->route('cart.index') ->with('success','Product updated successfully');
+        return redirect()->action('CartController@index')->with('success','Product updated successfully');
     }
 
     /**
@@ -148,6 +148,6 @@ class CartController extends Controller
     public function destroy($id)
     {
         Tickets::find($id)->delete();
-        return redirect()->route('cart.index') ->with('success','Product deleted successfully');
+        return redirect()->action('CartController@index')->with('success','Product deleted successfully');
     }
 }

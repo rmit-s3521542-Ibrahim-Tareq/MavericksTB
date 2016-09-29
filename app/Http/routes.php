@@ -15,6 +15,7 @@ Route::auth();
 
 Route::resource('cart', 'CartController');
 Route::get('/cart', 'CartController@index');
+Route::post('/cart', 'CartController@store');
 Route::post('/payment', 'PaymentController@index');
 
 Route::get('/', 'HomeController@index');
