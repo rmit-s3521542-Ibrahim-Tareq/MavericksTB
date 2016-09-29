@@ -7,9 +7,42 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    Hello Nick..
+                <div class="panel-body" style="border-bottom: 1px solid #484747;">
+                    <h3><b>Hello Nick..</b></h3>
                 </div>
+
+
+                    <div class="row" style="padding:30px; ">
+                        <h3><b>WISH-LIST</b></h3>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/squad.jpg" class="img-thumbnail" alt="suicidesquad" width="180" id="1" onclick="openBooking(this.id)">
+                            <button type="button" class="close" aria-label="Close" style="position: absolute; top: 5px; right: 10px; color: white; opacity: 1"><span>&times;</span></button>
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/sausage.jpg" class="img-thumbnail" alt="sausageparty" width="180"  id="2" onclick="openBooking(this.id)">
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="180" id="3" onclick="openBooking(this.id)">
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/sully.jpg" class="img-thumbnail" alt="sully" width="180"  id="4" onclick="openBooking(this.id)">
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/squad.jpg" class="img-thumbnail" alt="suicidesquad" width="180" id="1" onclick="openBooking(this.id)">
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/sausage.jpg" class="img-thumbnail" alt="sausageparty" width="180"  id="2" onclick="openBooking(this.id)">
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="180" id="3" onclick="openBooking(this.id)">
+                        </div>
+                        <div class="col-md-2 boxHits">
+                            <img src="../public/img/sully.jpg" class="img-thumbnail" alt="sully" width="180"  id="4" onclick="openBooking(this.id)">
+                        </div>
+                    </div>
+
+
+
                 <div class="row">
                     <div class="col-md-6 bookingHead"><h4><b>Bookings</b></h4><hr>
 
