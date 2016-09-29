@@ -14,16 +14,9 @@
 
             <ul class="nav navbar-nav">
                 <li><a href="{!! url('/') !!}" class="m-logo"></a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">QuickTix
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#cinemaModal">Search by Cinema</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#movieModal">Search by Movie</a></li>
-                    </ul>
-                </li>
-                <li><a href="{{ url('/movies') }}">Movies</a></li>
+                <li><a href="{{ url('/movies') }}"><span class="glyphicon glyphicon-blackboard"></span> Movies</a></li>
                 <li><a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="{{ url('/admin') }}"><span class="glyphicon glyphicon-eye-open"></span> Admin</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
