@@ -25,6 +25,8 @@ class CreateMoviesTable extends Migration
             $table->string('imdb_rating');
             $table->string('youtube_url');
             $table->integer('runtime');
+            $table->string('short_desc');
+            $table->string('carousel_url');
             
             $table->timestamps();
         });

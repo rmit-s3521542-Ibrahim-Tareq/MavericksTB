@@ -24,7 +24,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'deadpool.jpg'
         ]);
 
         DB::table('movies')->insert([
@@ -40,7 +42,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'deadpool.jpg'
         ]);
 
         DB::table('movies')->insert([
@@ -56,7 +60,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'deadpool.jpg'
         ]);
 
         DB::table('movies')->insert([
@@ -72,7 +78,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'zootopia.png'
         ]);
 
         DB::table('movies')->insert([
@@ -88,7 +96,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'deadpool.jpg'
         ]);
 
         DB::table('movies')->insert([
@@ -104,7 +114,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'batman.jpg'
         ]);
 
         DB::table('movies')->insert([
@@ -120,7 +132,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'deadpool.jpg'
         ]);
 
         DB::table('movies')->insert([
@@ -136,7 +150,9 @@ class MoviesTableSeeder extends Seeder
             'runtime' => 90,
             'created_at' => '2016-09-21 07:53:43',
             'updated_at' => '2016-09-21 07:53:43',
-            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo'
+            'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
+            'short_desc' => 'This is a short random string of text!',
+            'carousel_url' => 'bourne.jpg'
         ]);
 
 
@@ -190,5 +206,35 @@ class MoviesTableSeeder extends Seeder
             'cinema_id' => 1
         ]);
 
+
+
+
+
+
+
+
+
+
+
+        DB::table('whats_hots')->insert([
+            'position' => 0,
+            'movie_id' => 1
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 0,
+            'movie_id' => 2
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 0,
+            'movie_id' => 3
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 0,
+            'movie_id' => 7
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 0,
+            'movie_id' => 4
+        ]);
     }
 }

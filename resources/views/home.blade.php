@@ -9,50 +9,22 @@
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
+        @for($j = 0; $j < count($hot); $j++)
+        <li data-target="#myCarousel" data-slide-to="{{$j}}" class="{{$j==0 ? 'active' : ''}}"></li>
+        @endfor
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active" style="background-image:url(../public/img/large-banners/deadpool.jpg);">
-            <img src="../public/img/deadpool.jpg" alt="deadpool">
+        @foreach($hot as $k=>$h)
+        <div class="item {{ $i++ == 0 ? 'active' : '' }}" style="background-image:url({{ url('/') }}/img/large-banners/{{$movies[$k]['carousel_url']}});">
+            <img src="{{ url('/') }}/img/large-banners/{{$movies[$k]['carousel_url']}}" alt="{{$movies[$k]['movie_name']}}">
             <div class="carousel-caption">
-                <h3>Deadpool</h3>
-                <p>A former Special Forces operative turned mercenary is subjected to a rogue experiment that leaves him
-                    with accelerated healing powers, adopting the alter ego Deadpool.</p>
+                <h3>{{$movies[$k]['movie_name']}}</h3>
+                <p>{{$movies[$k]['short_desc']}}</p>
             </div>
         </div>
-
-        <div class="item" style="background-image:url(../public/img/bourne.jpg);">
-            <img src="../public/img/bourne.jpg" alt="bourne">
-            <div class="carousel-caption">
-                <h3>Jason Bourne</h3>
-                <p>The CIA's most dangerous former operative is drawn out of hiding to uncover more explosive truths
-                    about his past.</p>
-            </div>
-        </div>
-
-        <div class="item" style="background-image:url(../public/img/large-banners/batman.jpg);">
-            <img src="../public/img/batman.jpg" alt="batman">
-            <div class="carousel-caption">
-                <h3>Batman v Superman</h3>
-                <h4>Dawn of Justice</h4>
-                <p>Fearing that the actions of Superman are left unchecked, Batman takes on the Man of Steel, while the
-                    world wrestles with what kind of a hero it really needs.</p>
-            </div>
-        </div>
-
-        <div class="item" style="background-image:url(../public/img/large-banners/zootopia.png);">
-            <img src="../public/img/zoo.jpg" alt="zoo">
-            <div class="carousel-caption">
-                <h3>Zootopia</h3>
-                <p>In a city of anthropomorphic animals, a rookie bunny cop and a cynical con artist fox must work
-                    together to uncover a conspiracy.</p>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <!-- Left and right controls -->

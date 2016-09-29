@@ -23,6 +23,7 @@
         return date;
     }
 </script>
+<script src="global.js"></script>
 
 @yield('additionalJs')
 
