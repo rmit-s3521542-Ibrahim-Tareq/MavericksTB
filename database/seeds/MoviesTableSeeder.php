@@ -26,7 +26,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'deadpool.jpg'
+            'carousel_url' => 'deadpool.jpg',
+            'carousel_sub' => ''
         ]);
 
         DB::table('movies')->insert([
@@ -44,7 +45,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'deadpool.jpg'
+            'carousel_url' => 'deadpool.jpg',
+            'carousel_sub' => ''
         ]);
 
         DB::table('movies')->insert([
@@ -62,7 +64,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'deadpool.jpg'
+            'carousel_url' => 'deadpool.jpg',
+            'carousel_sub' => 'This is getting intenseeeeee!'
         ]);
 
         DB::table('movies')->insert([
@@ -80,7 +83,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'zootopia.png'
+            'carousel_url' => 'zootopia.png',
+            'carousel_sub' => ''
         ]);
 
         DB::table('movies')->insert([
@@ -98,7 +102,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'deadpool.jpg'
+            'carousel_url' => 'deadpool.jpg',
+            'carousel_sub' => ''
         ]);
 
         DB::table('movies')->insert([
@@ -116,7 +121,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'batman.jpg'
+            'carousel_url' => 'batman.jpg',
+            'carousel_sub' => ''
         ]);
 
         DB::table('movies')->insert([
@@ -134,7 +140,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'deadpool.jpg'
+            'carousel_url' => 'deadpool.jpg',
+            'carousel_sub' => ''
         ]);
 
         DB::table('movies')->insert([
@@ -152,7 +159,8 @@ class MoviesTableSeeder extends Seeder
             'updated_at' => '2016-09-21 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/4SaBjMHtQqo',
             'short_desc' => 'This is a short random string of text!',
-            'carousel_url' => 'bourne.jpg'
+            'carousel_url' => 'bourne.jpg',
+            'carousel_sub' => ''
         ]);
 
 
@@ -235,6 +243,33 @@ class MoviesTableSeeder extends Seeder
         DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 4
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+        DB::table('whats_hots')->insert([
+            'position' => 0,
+            'movie_id' => 5
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 2,
+            'movie_id' => 4
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 1,
+            'movie_id' => 3
+        ]);
+        DB::table('whats_hots')->insert([
+            'position' => 3,
+            'movie_id' => 2
         ]);
     }
 }

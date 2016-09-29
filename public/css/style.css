@@ -232,9 +232,21 @@ footer
     box-shadow:0px 0px 10px black;
 }
 
+.carousel-control .glyphicon {
+    margin-top:-15px;
+}
+
+.carousel-control.left .glyphicon {
+    margin-left:-15px;
+}
+
+.carousel-control.right .glyphicon {
+    margin-right:-15px;
+}
+
 .backforwardSwitch {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 100px);
     left: 0;
     right: 0;
 }

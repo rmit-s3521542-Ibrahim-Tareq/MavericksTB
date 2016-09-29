@@ -27,6 +27,7 @@ class CreateMoviesTable extends Migration
             $table->integer('runtime');
             $table->string('short_desc');
             $table->string('carousel_url');
+            $table->string('carousel_sub');
             
             $table->timestamps();
         });

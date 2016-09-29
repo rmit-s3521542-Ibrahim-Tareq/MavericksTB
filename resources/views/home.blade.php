@@ -21,6 +21,9 @@
             <img src="{{ url('/') }}/img/large-banners/{{$movies[$k]['carousel_url']}}" alt="{{$movies[$k]['movie_name']}}">
             <div class="carousel-caption">
                 <h3>{{$movies[$k]['movie_name']}}</h3>
+                @if(strlen($movies[$k]['carousel_sub']) > 0)
+                <h4>{{$movies[$k]['carousel_sub']}}</h4>
+                @endif
                 <p>{{$movies[$k]['short_desc']}}</p>
             </div>
         </div>
