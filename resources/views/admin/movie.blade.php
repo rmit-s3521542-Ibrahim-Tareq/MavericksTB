@@ -2,20 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1>Mavericks Administration</h1>
-    <p>
-        Welcome to Mavericks Administration.
-    </p>
-    <p>
-        This area is actively montiored. Unauthorised access is strictly prohibited.
-    </p>
-    <h3>Select an action:</h3>
-    <ol>
-        <li><a href="{{url('/')}}">Return Home</a></li>
-        <li><a href="{{url('/admin/movies')}}">Manage Movies</a></li>
-        <li><a href="{{url('/admin/hot')}}">Manage Hot Movies</a></li>
-        <li><a href="{{url('/admin/carousel')}}">Manage Carousel</a></li>
-        <li><a href="{{url('/admin/users')}}">Manage User Accounts</a></li>
-    </ol>
+    <h1>Movies</h1>
+    <h3>Now Showing</h3>
+    <div class="row">
+        @foreach($current as $cur)
+        <div class="col-lg-3 boxHits">
+            <img src="{{url('/')}}/img/{{$cur['poster_url']}}" class="img-thumbnail" alt="{{$cur['movie_name']}}" width="290" height="200" />
+            <div class="hiddenBox">
+                <h2>{{$cur['movie_name']}}</h2>
+                <a class="btn btn-info">Edit Movie</a>
+                <a class="btn btn-danger">Delete Movie</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+
+    <hr/>
+    <h3>Coming Soon</h3>
 </div>
 @endsection
