@@ -9,6 +9,7 @@ body
     position:relative;
     box-sizing:border-box;
     word-wrap:break-word;
+    transition:width 0.25s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -231,9 +232,21 @@ footer
     box-shadow:0px 0px 10px black;
 }
 
+.carousel-control .glyphicon {
+    margin-top:-15px;
+}
+
+.carousel-control.left .glyphicon {
+    margin-left:-15px;
+}
+
+.carousel-control.right .glyphicon {
+    margin-right:-15px;
+}
+
 .backforwardSwitch {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 100px);
     left: 0;
     right: 0;
 }
