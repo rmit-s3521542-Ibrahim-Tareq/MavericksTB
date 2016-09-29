@@ -216,23 +216,23 @@ class MoviesTableSeeder extends Seeder
 
 
 
-        DB::table('whats_hots')->insert([
+        DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 1
         ]);
-        DB::table('whats_hots')->insert([
+        DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 2
         ]);
-        DB::table('whats_hots')->insert([
+        DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 3
         ]);
-        DB::table('whats_hots')->insert([
+        DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 7
         ]);
-        DB::table('whats_hots')->insert([
+        DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 4
         ]);

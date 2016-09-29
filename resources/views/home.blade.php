@@ -9,14 +9,14 @@
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        @for($j = 0; $j < count($hot); $j++)
+        @for($j = 0; $j < count($carousel); $j++)
         <li data-target="#myCarousel" data-slide-to="{{$j}}" class="{{$j==0 ? 'active' : ''}}"></li>
         @endfor
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        @foreach($hot as $k=>$h)
+        @foreach($carousel as $k=>$h)
         <div class="item {{ $i++ == 0 ? 'active' : '' }}" style="background-image:url({{ url('/') }}/img/large-banners/{{$movies[$k]['carousel_url']}});">
             <img src="{{ url('/') }}/img/large-banners/{{$movies[$k]['carousel_url']}}" alt="{{$movies[$k]['movie_name']}}">
             <div class="carousel-caption">
@@ -43,18 +43,15 @@
 <div class="container topMovies">
     <div class="row">
         <p id="topMovies-header">WHAT'S HOT</p>
-        <div class="col-lg-3 boxHits" style="padding-left:0px;">
-            <img src="../public/img/squad.jpg" class="img-thumbnail" alt="suicidesquad" width="290" height="200" id="1" onclick="openBooking(this.id)">
-        </div>
-        <div class="col-lg-3 boxHits">
-            <img src="../public/img/sausage.jpg" class="img-thumbnail" alt="sausageparty" width="290" height="200" id="2" onclick="openBooking(this.id)">
-        </div>
-        <div class="col-lg-3 boxHits">
-            <img src="../public/img/xmen.jpg" class="img-thumbnail" alt="xmen" width="290" height="200" id="3" onclick="openBooking(this.id)">
-        </div>
-        <div class="col-lg-3 boxHits" style="padding-right:0px;">
-            <img src="../public/img/sully.jpg" class="img-thumbnail" alt="sully" width="290" height="200" id="4" onclick="openBooking(this.id)">
-        </div>
+        @if(count($hot) < 1)
+            <p>There are no movies to display.</p>
+        @else
+            @foreach($hot as $k=>$h)
+            <div class="col-lg-3 boxHits">
+                <img src="{{url('/')}}/img/{{$hotMovies[$k]['poster_url']}}" class="img-thumbnail" alt="{{$hotMovies[$k]['movie_name']}}" width="290" height="200" onclick="openBooking('{{$hotMovies[$k]['id']}}')">
+            </div>
+            @endforeach
+        @endif
     </div>
 </div>
 
@@ -84,80 +81,10 @@
 
 @section('additionalJs')
 <script>
-    function priceValidator(quantityInput)
-    {
-        if (quantityInput.value == "")
-        {
-            quantityInput.value = 0;
-        }
-        else
-        {
-            quantityInput.value = parseInt(quantityInput.value);
-        }
-    }
-    function calculatePrice()
-    {
-        var ticketTable = document.getElementById("bookingTable");
-        var quantity = document.getElementsByClassName("numOfTickets");
-        ticketTable.rows[1].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[0].value * 8).toFixed(2);		//Child
-        ticketTable.rows[2].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[1].value * 14).toFixed(2);	//Adult
-        ticketTable.rows[3].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[2].value * 12).toFixed(2);	//Senior
-        ticketTable.rows[4].cells[2].getElementsByClassName("subtotalPrice")[0].innerText = (quantity[3].value * 10).toFixed(2);	//Concession
-        calculateTotalPrice();
-    }
-    function calculateTotalPrice()
-    {
-        var ticketTable = document.getElementById("bookingTable");
-        var totalPrice = parseFloat(0.0);
-        for (var i = 1; i <= 4; i++)
-        {
-            totalPrice += parseFloat(ticketTable.rows[i].cells[2].getElementsByClassName("subtotalPrice")[0].innerText);
-        }
-        document.getElementById("totalPrice").innerHTML = "$" + totalPrice.toFixed(2);
-    }
     function openBooking(id)
     {
-        if(id == 1)
-        {
-            $("#namePlaceholder").html("Suicide Squad");
-            $("#movieName").val("Suicide Squad");
-        }
-        else if(id == 2)
-        {
-            $("#namePlaceholder").html("Sausage Party");
-            $("#movieName").val("Sausage Party");
-        }
-        else if(id == 3)
-        {
-            $("#namePlaceholder").html("X-MEN Apocalypse");
-            $("#movieName").val("X-MEN Apocalypse");
-        }
-        else
-        {
-            $("#namePlaceholder").html("Sully");
-            $("#movieName").val("Sully");
-        }
-        $('#tilesModal').modal('show');
+        var id = parseInt(id) - 1;
+        createClicker(movies[id]);
     }
-    function resetFields()
-    {
-        var x = document.getElementsByClassName("resetMe");
-        for(var i = 0; i < x.length; i++)
-        {
-            x[i].value = "0";
-            x[i].innerHTML= "0.00";
-        }
-    }
-    $(document).ready(function()
-    {
-        /*("#submitForm").click(function(){
-         $("#ticketform").submit(function(){
-         alert("Submitted");
-         });
-         });*/
-        $("#submitForm").click(function(){
-            $('#ticketform').submit();
-        });
-    });
 </script>
 @endsection

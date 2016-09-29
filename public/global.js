@@ -48,45 +48,44 @@ var selectedCinema = -1;
 var selectedTime = -1;
 var selectedMovie = "";
 
-function createClicker(toAppend, data, soon) {
+function createClicker(data, soon) {
     var soon = soon || false;
-    toAppend.on("click", function() {
-        selectedMovie = data['id'];
-        if(!soon) {
-            $('.mComingSoon').hide();
-            $('.mShowing').show();
-        }
-        else {
-            $('.mComingSoon').show();
-            $('.mShowing').hide();
-        }
+    selectedMovie = data['id'];
+    if(!soon) {
+        $('.mComingSoon').hide();
+        $('.mShowing').show();
+    }
+    else {
+        $('.mComingSoon').show();
+        $('.mShowing').hide();
+    }
 
-        $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url(img/'+data['poster_url']+')');
-        $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
-        $('#movieOverlay.overlay #movieName').val(data['movie_name']);
-        $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
-        $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
-        $("#movieOverlay.overlay span#mGenre").text(data['genre']);
-        $("#movieOverlay.overlay span#mReleaseDate").text(formatTimestamp(data['release_date']*1));
-        $("#movieOverlay.overlay #mYoutube").attr('src', data['youtube_url']);
-        $("#movieOverlay.overlay span#mIMDBRating").text(data['imdb_rating']);
-        $("#movieOverlay.overlay span#mActors").text(data['actors']);
+    $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url(img/'+data['poster_url']+')');
+    $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
+    $('#movieOverlay.overlay #movieName').val(data['movie_name']);
+    $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
+    $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
+    $("#movieOverlay.overlay span#mGenre").text(data['genre']);
+    $("#movieOverlay.overlay span#mReleaseDate").text(formatTimestamp(data['release_date']*1));
+    $("#movieOverlay.overlay #mYoutube").attr('src', data['youtube_url']);
+    $("#movieOverlay.overlay span#mIMDBRating").text(data['imdb_rating']);
+    $("#movieOverlay.overlay span#mActors").text(data['actors']);
 
-        var className = "";
-        switch(data['rating']) {
-            case "G": className="ratingG"; break;
-            case "PG": className="ratingPG"; break;
-            case "M": className="ratingM"; break;
-            case "MA": className="ratingMA"; break;
-            case "R": className="ratingR"; break;
-            default:
-            case "Unrated": className="ratingUnrated"; break;
-        }
-        $("#movieOverlay.overlay span#mRating").text(data['rating']);
-        $("#movieOverlay.overlay span#mRating").attr('class', className);
+    var className = "";
+    switch(data['rating']) {
+        case "G": className="ratingG"; break;
+        case "PG": className="ratingPG"; break;
+        case "M": className="ratingM"; break;
+        case "MA": className="ratingMA"; break;
+        case "R": className="ratingR"; break;
+        default:
+        case "Unrated": className="ratingUnrated"; break;
+    }
 
-        $("#movieOverlay").addClass("show");
-    });
+    $("#movieOverlay.overlay span#mRating").text(data['rating']);
+    $("#movieOverlay.overlay span#mRating").attr('class', className);
+
+    $("#movieOverlay").addClass("show");
 }
 
 $(document).ready(function() {

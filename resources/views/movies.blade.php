@@ -76,10 +76,11 @@
                 for (var e in movies) {
                     var toAppend = $('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/' + movies[e]['poster_url'] + '" class="img-thumbnail" alt="' + movies[e]['movie_name'] + '" width="290" height="200" /></div>');
                     toAppend.appendTo($('.nowshowingTab.tab-pane'));
-                    createClicker(toAppend, movies[e]);
+                    toAppend.on("click", function() {
+                        createClicker(movies[e]);
+                    });
                 }
             }
-
 
             if (moviesSoon.length < 1) {
                 $(".notifTwo").show().text("There are no movies to display.");
@@ -89,7 +90,9 @@
                 for (var e in moviesSoon) {
                     var toAppend = $('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/' + moviesSoon[e]['poster_url'] + '" class="img-thumbnail" alt="' + moviesSoon[e]['movie_name'] + '" width="290" height="200" /></div>');
                     toAppend.appendTo($('.comingsoonTab.tab-pane'));
-                    createClicker(toAppend, moviesSoon[e], true);
+                    toAppend.on("click", function() {
+                        createClicker(moviesSoon[e], true);
+                    });
                 }
             }
         }, 500);
