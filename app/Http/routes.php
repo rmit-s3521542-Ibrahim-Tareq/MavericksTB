@@ -26,7 +26,6 @@ Route::post('/movies', 'MovieController@loadMovies');
 Route::get('/account', 'AccountController@show');
 
 Route::get('/search', 'SearchController@process');
-Route::get('/search/{term}', ['uses' => 'SearchController@search']);
 Route::get('/fbLogin', 'SocialController@loginWithFacebook');
 Route::get('/returnauth', 'SocialController@handleProviderCallback');
 

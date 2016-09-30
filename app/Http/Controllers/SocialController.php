@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite as Socialize;
 
 use App\Http\Requests;
-use Laravel\Socialite\Facades\Socialite;
+use Socialite;
 
 class SocialController extends Controller
 {

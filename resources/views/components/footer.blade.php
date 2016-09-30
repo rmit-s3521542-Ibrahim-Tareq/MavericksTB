@@ -10,7 +10,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="moment.js"></script>
+<script src="{{url('/')}}/moment.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -23,7 +23,7 @@
         return date;
     }
 </script>
-<script src="global.js"></script>
+<script src="{{url('/')}}/global.js"></script>
 
 @yield('additionalJs')
 
