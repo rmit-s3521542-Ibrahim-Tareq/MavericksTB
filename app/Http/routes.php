@@ -34,4 +34,3 @@ Route::get('/admin/movies', 'AdminMovieController@index');
 Route::get('/admin/hot', 'AdminHotController@index');
 Route::get('/admin/carousel', 'AdminCarouselController@index');
 Route::get('/admin/users', 'AdminUserController@index');
-
