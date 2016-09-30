@@ -6,6 +6,7 @@
     <div class="row">
         {!! Form::open(array('method'=>'POST')) !!}
         <div class="col-md-12">
+            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
             <label for="mName">Name</label>
             <input type="text" id="mName" name="movie_name" class="form-control" placeholder="Movie Name" value="{{$movie['movie_name']}}" />
 

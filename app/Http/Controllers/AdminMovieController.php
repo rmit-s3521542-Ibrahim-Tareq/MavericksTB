@@ -94,7 +94,8 @@ class AdminMovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Movies::find($id)->update($request->all());
+        return Redirect::to('/admin/movies');
     }
 
     /**
