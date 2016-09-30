@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/movies', 'MovieController@showDefault');
 Route::post('/movies', 'MovieController@loadMovies');
+Route::post('/wishlist', 'MovieController@addWishlist');
 
 Route::get('/account', 'AccountController@show');
 

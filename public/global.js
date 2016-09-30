@@ -110,7 +110,7 @@ $(document).ready(function() {
 
         $("#mLocation").val(-1);
         $("#mTime").html('<option selected disabled>You must first select a cinema</option>');
-
+        $("#mAddWishlist").slideDown(250);
     });
 
     $.ajax({
@@ -139,6 +139,24 @@ $(document).ready(function() {
                 moviesSoon.push(data[1][e]);
             }
         }
+    });
+
+    $("#mAddWishlist").on("click", function() {
+        $.ajax({
+            method: "POST",
+            dataType: "JSON",
+            url: "wishlist",
+            data: { id: selectedMovie },
+            success: function(data){
+                if(data == "error") {
+                    alert('An error occurred. Please try again!');
+                }
+                else {
+                    alert('Movie added to your wishlist!');
+                    $("#mAddWishlist").slideUp(250);
+                }
+            }
+        });
     });
 
     $("#submitForm").click(function(){

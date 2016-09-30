@@ -16,7 +16,9 @@
                 <li><a href="{!! url('/') !!}" class="m-logo"></a></li>
                 <li><a href="{{ url('/movies') }}"><span class="glyphicon glyphicon-blackboard"></span> Movies</a></li>
                 <li><a href="{{ url('/cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                @if (!Auth::guest())
                 <li><a href="{{ url('/admin') }}"><span class="glyphicon glyphicon-eye-open"></span> Admin</a></li>
+                @endif
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

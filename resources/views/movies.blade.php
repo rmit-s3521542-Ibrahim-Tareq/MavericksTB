@@ -95,7 +95,7 @@
                 for (var e in moviesSoon) {
                     var toAppend = $('<div class="col-lg-3 boxHits"><img src="{{url('/')}}/img/' + moviesSoon[e]['poster_url'] + '" class="img-thumbnail" alt="' + moviesSoon[e]['movie_name'] + '" width="290" height="200" /></div>');
                     toAppend.appendTo($('.comingsoonTab.tab-pane'));
-                    click(toAppend,movies[e],true);
+                    click(toAppend,moviesSoon[e],true);
                 }
             }
         }, 500);
