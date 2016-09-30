@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movies;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 
 class AdminMovieController extends Controller
@@ -77,7 +77,12 @@ class AdminMovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movie = Movies::where('id', '=', $id)->first();
+        if(count($movie) < 1) {
+            return Redirect::to('/admin/movies');
+        }
+
+        return view('admin.movie-edit', ['movie' => $movie]);
     }
 
     /**
