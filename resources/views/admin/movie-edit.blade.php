@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Edit Movie</h1>
     <div class="row">
-        !! Form::open(array('action' => 'AdminMovieController@update','method'=>'POST')) !!}
+        {!! Form::open(array('method'=>'POST')) !!}
         <div class="col-md-12">
             <label for="mName">Name</label>
             <input type="text" id="mName" name="movie_name" class="form-control" placeholder="Movie Name" value="{{$movie['movie_name']}}" />
@@ -84,7 +84,7 @@
             <hr/>
             <input type="submit" value="Accept Changes" class="btn btn-info"/>
         </div>
-        !! Form::close() !!}
+        {!! Form::close() !!}
     </div>
 </div>
 @endsection
