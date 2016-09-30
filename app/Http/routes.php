@@ -27,8 +27,8 @@ Route::get('/account', 'AccountController@show');
 
 Route::get('/search', 'SearchController@process');
 Route::get('/search/{term}', ['uses' => 'SearchController@search']);
-Route::get('/fbLogin', 'AuthController@loginWithFacebook');
-Route::get('/returnauth', 'AuthController@handleProviderCallback');
+Route::get('/fbLogin', 'SocialController@loginWithFacebook');
+Route::get('/returnauth', 'SocialController@handleProviderCallback');
 
 
 Route::get('/admin', 'AdminController@index');

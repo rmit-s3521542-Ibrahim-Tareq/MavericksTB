@@ -7,7 +7,6 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Laravel\Socialite\Facades\Socialite as Socialize;
 
 class AuthController extends Controller
 {
@@ -69,16 +68,5 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-    
-    public function loginWithFacebook(){
-        return Socialize::with('facebook')->redirect();
-    }
-
-    public function handleProviderCallback()
-    {
-        $user = Socialize::with('facebook')->user();
-
-        // $user->token;
     }
 }
