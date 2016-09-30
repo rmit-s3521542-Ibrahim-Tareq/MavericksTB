@@ -487,6 +487,17 @@ span.ratingUnrated {
     border:1px solid #000000;
 }
 
+.numOfTickets {
+    height:30px;
+}
+
+.btn-facebook {
+    padding-left:45px;
+    background-image:url(../img/fb.png);
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:0px center;
+}
 
 
 
