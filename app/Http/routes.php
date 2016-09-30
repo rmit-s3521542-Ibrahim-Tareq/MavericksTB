@@ -25,13 +25,8 @@ Route::post('/movies', 'MovieController@loadMovies');
 
 Route::get('/account', 'AccountController@show');
 
+Route::get('/admin', 'AdminController@index');
+
 Route::get('/search', 'SearchController@process');
 Route::get('/search/{term}', ['uses' => 'SearchController@search']);
-
-
-Route::get('/admin', 'AdminController@index');
-Route::get('/admin/movies', 'AdminMovieController@index');
-Route::get('/admin/hot', 'AdminHotController@index');
-Route::get('/admin/carousel', 'AdminCarouselController@index');
-Route::get('/admin/users', 'AdminUserController@index');
 
