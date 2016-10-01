@@ -3,16 +3,28 @@
 @section('content')
 <div class="container">
     <h1>Edit Movie</h1>
+
+    @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <div class="row">
-        {!! Form::open(array('method'=>'POST')) !!}
+        {!! Form::model($movie, ['method' => 'PATCH','route' => ['admin.movies.update', $movie['id']]]) !!}
         <div class="col-md-12">
             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
             <label for="mName">Name</label>
             <input type="text" id="mName" name="movie_name" class="form-control" placeholder="Movie Name" value="{{$movie['movie_name']}}" />
 
             <hr/>
-            <label for="mReleaseDate">Release Date - TO BE FIXED</label>
-            <input type="date" id="mReleaseDate" name="release_date" class="form-control" value="{{$movie['release_date']}}" />
+            <label for="mReleaseDate">Release Date (timestamp)</label>
+            <input type="text" id="mReleaseDate" name="release_date" class="form-control" value="{{$movie['release_date']}}" />
 
             <hr/>
             <label for="mGenre">Genre</label>

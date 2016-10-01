@@ -30,14 +30,15 @@ class CreateBookingsTable extends Migration
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
 
 
             //session time that was booked
             $table->foreign('session_time_id')
                 ->references('id')
-                ->on('session_times');
-
+                ->on('session_times')
+                ->onDelete('cascade');
 
         });
     }

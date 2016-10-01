@@ -32,9 +32,10 @@ Route::get('/returnauth', 'SocialController@handleProviderCallback');
 
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/admin/movies', 'AdminMovieController@index');
-Route::get('/admin/movies/edit/{id}', ['as' => 'admin.movies', 'uses' => 'AdminMovieController@edit']);
-Route::post('/admin/movies/edit/{id}', 'AdminMovieController@update');
 Route::get('/admin/hot', 'AdminHotController@index');
 Route::get('/admin/carousel', 'AdminCarouselController@index');
 Route::get('/admin/users', 'AdminUserController@index');
+
+Route::group(array('prefix' => 'admin'), function() {
+    Route::resource('movies', 'AdminMovieController');
+});

@@ -27,7 +27,8 @@ class CreateTicketsTable extends Migration
         Schema::table('tickets',function ($table) {
             $table->foreign('booking_id')
                 ->references('id')
-                ->on('bookings');
+                ->on('bookings')
+                ->onDelete('cascade');
         });
     }
 

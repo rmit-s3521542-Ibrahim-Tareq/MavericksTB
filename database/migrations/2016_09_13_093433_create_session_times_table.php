@@ -27,11 +27,13 @@ class CreateSessionTimesTable extends Migration
         Schema::table('session_times', function ($table) {
             $table->foreign('movie_id')
                 ->references('id')
-                ->on('movies');
+                ->on('movies')
+                ->onDelete('cascade');
 
             $table->foreign('cinema_id')
                 ->references('id')
-                ->on('cinemas');
+                ->on('cinemas')
+                ->onDelete('cascade');
         });
     }
 
