@@ -15,7 +15,6 @@
         <li><a href="{{url('/admin/movies')}}">Manage Movies</a></li>
         <li><a href="{{url('/admin/hot')}}">Manage Hot Movies</a></li>
         <li><a href="{{url('/admin/carousel')}}">Manage Carousel</a></li>
-        <li><a href="{{url('/admin/users')}}">Manage User Accounts</a></li>
     </ol>
 </div>
 @endsection

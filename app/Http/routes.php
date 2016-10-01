@@ -32,7 +32,6 @@ Route::get('/returnauth', 'SocialController@handleProviderCallback');
 
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/admin/users', 'AdminUserController@index');
 
 Route::group(array('prefix' => 'admin'), function() {
     Route::resource('movies', 'AdminMovieController');
