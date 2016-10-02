@@ -39,8 +39,8 @@ function resetFields()
     }
 }
 
-var movies = [];
-var moviesSoon = [];
+var movies = {};
+var moviesSoon = {};
 var cinemas = [];
 var sessions = [];
 
@@ -119,8 +119,8 @@ $(document).ready(function() {
         url: "movies",
         data: { },
         success: function(data) {
-            movies = [];
-            moviesSoon = [];
+            movies = {};
+            moviesSoon = {};
             cinemas = data[2];
             sessions = data[3];
 
@@ -132,11 +132,11 @@ $(document).ready(function() {
             $("#mTime").html('<option selected disabled>You must first select a cinema</option>');
 
             for(var e in data[0]) {
-                movies.push(data[0][e]);
+                movies[" " + data[0][e]['id'] + " "] = data[0][e];
             }
 
             for(var e in data[1]) {
-                moviesSoon.push(data[1][e]);
+                moviesSoon[" " + data[1][e]['id'] + " "] = data[1][e];
             }
         }
     });

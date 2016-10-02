@@ -63,19 +63,15 @@
         <div class="col-lg-5 newsBox-left">
             <p>Don't be late,</p>
             <p>Book your ticket now!</p>
-            <a href="#" class="ticket"><i class="book"></i>BOOK TICKET</a>
+            <a href="{{url('/movies')}}" class="ticket"><i class="book"></i>BOOK TICKET</a>
         </div>
         <div class="col-lg-7 newsBox-right">
             <p id="newBoxRight-header">NEWS</p>
-            <p class="subheading">Get discount upto <strong>10%</strong> if you are a member!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo.</p>
+            <p class="subheading">A new beginning for Mavericks</p>
+            <p>Introducing our brand new website featuring Facebook login, wishlists and the ability to book movies online. <b>Skip the queue.</b></p>
             <hr/>
             <p class="subheading">We are expanding!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo.</p>
+            <p>We've got a new cinema coming to Chadstone, due to open in February 2017! To celebrate, we are giving away 10 movie vouchers. Stay tuned for more information on the cinema and competition!</p>
         </div>
     </div>
 </div>
@@ -87,7 +83,7 @@
     function openBooking(id)
     {
         var id = parseInt(id) - 1;
-        createClicker(movies[id]);
+        createClicker(movies[" " + id + " "]);
     }
 </script>
 @endsection
