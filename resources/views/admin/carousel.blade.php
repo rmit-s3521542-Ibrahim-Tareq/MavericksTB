@@ -2,20 +2,40 @@
 
 @section('content')
 <div class="container">
-    <h1>Mavericks Administration</h1>
-    <p>
-        Welcome to Mavericks Administration.
-    </p>
-    <p>
-        This area is actively montiored. Unauthorised access is strictly prohibited.
-    </p>
-    <h3>Select an action:</h3>
-    <ol>
-        <li><a href="{{url('/')}}">Return Home</a></li>
-        <li><a href="{{url('/admin/movies')}}">Manage Movies</a></li>
-        <li><a href="{{url('/admin/hot')}}">Manage Hot Movies</a></li>
-        <li><a href="{{url('/admin/carousel')}}">Manage Carousel</a></li>
-        <li><a href="{{url('/admin/users')}}">Manage User Accounts</a></li>
-    </ol>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h1>Carousel</h1>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-warning btn-lg" style="margin-top:10px;" href="{{ route('admin.carousel.create') }}"> Add Movie to list</a>
+            </div>
+        </div>
+    </div>
+
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
+
+    <div class="row">
+        @if(count($hot) < 1)
+        <div class="col-md-12"><p>There are no movies to display.</p></div>
+        @else
+        @foreach($hot as $k=>$h)
+        <div class="col-lg-3 boxHits">
+            <img src="{{url('/')}}/img/{{$hotMovies[$k]['poster_url']}}" class="img-thumbnail" alt="{{$hotMovies[$k]['movie_name']}}" width="290" height="200">
+            <div class="hiddenBox">
+                <h2>{{$hotMovies[$k]['movie_name']}}</h2>
+                <h4>Position: {{$h['position']}}</h4>
+                {!! Form::open(['method' => 'DELETE','route' => ['admin.carousel.destroy', $h['id']],'style'=>'display:inline']) !!}
+                {!! Form::submit('Remove from list', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
+            </div>
+        </div>
+        @endforeach
+        @endif
+    </div>
 </div>
 @endsection

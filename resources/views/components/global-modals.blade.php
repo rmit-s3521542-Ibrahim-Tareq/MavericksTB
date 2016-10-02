@@ -30,7 +30,9 @@
                 <div role="tabpanel" class="tab-pane" id="book">
                     <div class="mComingSoon">
                         <h3>This movie has not been released yet.</h3>
-                        <a class="btn btn-info">Add to wish list</a>
+                        @if (!Auth::guest())
+                        <a class="btn btn-info" id="mAddWishlist">Add to wish list</a>
+                        @endif
                     </div>
                     <div class="mShowing">
                         {!! Form::open(array('action' => 'CartController@store','method'=>'POST', 'id' => 'ticketForm')) !!}

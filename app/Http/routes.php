@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/movies', 'MovieController@showDefault');
 Route::post('/movies', 'MovieController@loadMovies');
+Route::post('/wishlist', 'MovieController@addWishlist');
 
 Route::get('/account', 'AccountController@show');
 
@@ -31,7 +32,9 @@ Route::get('/returnauth', 'SocialController@handleProviderCallback');
 
 
 Route::get('/admin', 'AdminController@index');
-Route::get('/admin/movies', 'AdminMovieController@index');
-Route::get('/admin/hot', 'AdminHotController@index');
-Route::get('/admin/carousel', 'AdminCarouselController@index');
-Route::get('/admin/users', 'AdminUserController@index');
+
+Route::group(array('prefix' => 'admin'), function() {
+    Route::resource('movies', 'AdminMovieController');
+    Route::resource('hot', 'AdminHotController');
+    Route::resource('carousel', 'AdminCarouselController');
+});

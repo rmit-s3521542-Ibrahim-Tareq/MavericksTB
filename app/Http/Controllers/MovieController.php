@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Movies;
 use App\Models\Cinemas;
 use App\Models\SessionTimes;
-use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Models\WishList;
+use App\Models\User;
+use Auth;
+use Request;
+use Input;
+use DB;
 
 class MovieController extends Controller
 {
@@ -32,5 +36,32 @@ class MovieController extends Controller
             }
         }
         return json_encode(array($current, $soon, $cinemas, $sessions));
+    }
+
+    public function addWishlist(Request $r) {
+        if(Auth::guest()) {
+            return json_encode("error");
+        }
+
+        $movieid = Input::get('id');
+        $movies = Movies::where('id', '=', $movieid)->first();
+        if(count($movies) < 1) {
+            return json_encode("error");
+        }
+
+        $wishlist = WishList::where([
+            ['movie_id', '=', $movieid],
+            ['user_id', '=', Auth::id()]
+        ])->first();
+
+        if(count($wishlist) > 0) {
+            return json_encode("error");
+        }
+
+        DB::table('wish_lists')->insert([
+            'movie_id' => $movieid,
+            'user_id' => Auth::id()
+        ]);
+        return json_encode("success");
     }
 }

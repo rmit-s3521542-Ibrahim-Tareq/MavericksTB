@@ -18,7 +18,6 @@
                 <li class="{{ Request::is('admin/movies') ? 'active' : '' }}"><a href="{{url('/admin/movies')}}">Movies</a></li>
                 <li class="{{ Request::is('admin/hot') ? 'active' : '' }}"><a href="{{url('/admin/hot')}}">What's Hot</a></li>
                 <li class="{{ Request::is('admin/carousel') ? 'active' : '' }}"><a href="{{url('/admin/carousel')}}">Carousel</a></li>
-                <li class="{{ Request::is('admin/users') ? 'active' : '' }}"><a href="{{url('/admin/users')}}">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{url('/')}}"><span class="glyphicon glyphicon-menu-left"></span> Back Home</a></li>

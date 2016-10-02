@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\WhatsHot;
+use App\Models\Movies;
+
+use Redirect;
 use App\Http\Requests;
 
 class AdminHotController extends Controller
@@ -19,7 +23,13 @@ class AdminHotController extends Controller
      */
     public function index()
     {
-        return view('admin.hot');
+        $hot = WhatsHot::all(['id', 'movie_id', 'position'])->sortBy('position');
+        $hotMovies = array();
+        foreach($hot as $k=>$h) {
+            $hotMovies[$k] = Movies::where('id', $h['movie_id'])->first();
+        }
+
+        return view('admin.hot', ['hot' => $hot, 'hotMovies' => $hotMovies]);
     }
 
     /**
@@ -29,7 +39,8 @@ class AdminHotController extends Controller
      */
     public function create()
     {
-        //
+        $movies = Movies::all();
+        return view('admin.hot-add', ['movies' => $movies]);
     }
 
     /**
@@ -40,7 +51,18 @@ class AdminHotController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'position' => 'required',
+            'movie_id' => 'required'
+        ]);
+
+        $check = WhatsHot::where('movie_id', '=', $request->input('movie_id'))->get();
+        if(count($check) > 0) {
+            return Redirect::back()->withErrors('This movie is already added to the What\'s Hot list.');
+        }
+
+        WhatsHot::create($request->all());
+        return redirect()->route('admin.hot.index') ->with('success','Movie successfully added to list.');
     }
 
     /**
@@ -85,6 +107,7 @@ class AdminHotController extends Controller
      */
     public function destroy($id)
     {
-        //
+        WhatsHot::where('id', '=', $id)->delete();
+        return redirect()->route('admin.hot.index') ->with('success','Movie successfully removed from list.');
     }
 }
