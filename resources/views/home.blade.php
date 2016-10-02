@@ -82,7 +82,7 @@
 <script>
     function openBooking(id)
     {
-        var id = parseInt(id) - 1;
+        var id = parseInt(id);
         createClicker(movies[" " + id + " "]);
     }
 </script>
