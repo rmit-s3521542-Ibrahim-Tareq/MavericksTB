@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => '342347972778615',
+        'client_secret' => 'a7e0048cc8407ccebd4ba4239f4a8431',
+        'redirect' => 'http://localhost/MavericksTB/public/returnauth',
+    ],
+
 ];

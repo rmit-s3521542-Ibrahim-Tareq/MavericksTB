@@ -23,7 +23,8 @@ class CreateCarouselsTable extends Migration
         Schema::table('carousels',function ($table) {
             $table->foreign('movie_id')
                 ->references('id')
-                ->on('movies');
+                ->on('movies')
+                ->onDelete('cascade');
         });
     }
 

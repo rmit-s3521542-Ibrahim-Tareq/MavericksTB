@@ -1,12 +1,16 @@
 @extends('components.global')
 
 @section('content')
-<div class="container">
+<div class="container reg">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
+                    <h4>Social Media Registration</h4>
+                    <a href="{{url('/fbLogin')}}" class="btn btn-primary btn-facebook">Facebook Register</a>
+                    <hr/>
+                    <h4>Mavericks Account Registration</h4>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
@@ -79,4 +83,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('additionalCss')
+<style>
+    .container.reg {
+        margin-top:100px;
+    }
+</style>
 @endsection

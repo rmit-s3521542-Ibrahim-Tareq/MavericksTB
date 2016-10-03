@@ -24,10 +24,12 @@ class CreateWishListsTable extends Migration
         Schema::table('wish_lists',function ($table){
             $table->foreign('movie_id')
                 ->references('id')
-                ->on('movies');
+                ->on('movies')
+                ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         } );
     }
 

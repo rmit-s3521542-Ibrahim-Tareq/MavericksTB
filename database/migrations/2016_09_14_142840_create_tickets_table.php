@@ -21,13 +21,13 @@ class CreateTicketsTable extends Migration
             $table->integer('adulticket');
             $table->integer('seniorticket');
             $table->integer('concessionticket');
-            $table->timestamps();
         });
 
         Schema::table('tickets',function ($table) {
             $table->foreign('booking_id')
                 ->references('id')
-                ->on('bookings');
+                ->on('bookings')
+                ->onDelete('cascade');
         });
     }
 

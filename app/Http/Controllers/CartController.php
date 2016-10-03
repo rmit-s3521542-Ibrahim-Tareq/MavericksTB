@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 use App\Http\Requests;
 use App\Models\Tickets;
@@ -16,45 +17,53 @@ class CartController extends Controller
 
     public function getTotalChildrenTickets() {
 
-        $totalChildTix = Tickets::where('childticket', '>', 0)->get();
+        $allTickets = session()->get('tickets');
         $numOfChildTix = 0;
-        foreach ($totalChildTix as $tix)
+
+        foreach ($allTickets as $ticket)
         {
-            $numOfChildTix = $numOfChildTix + $tix->childticket;
+            $numOfChildTix = $ticket['child'] + $numOfChildTix;
         }
+
         return $numOfChildTix;
     }
 
     public function getTotalAdultTickets() {
 
-        $totalAdultTix = Tickets::where('adulticket', '>', 0)->get();
+        $allTickets = session()->get('tickets');
         $numOfAdultTix = 0;
-        foreach ($totalAdultTix as $tix)
+
+        foreach ($allTickets as $ticket)
         {
-            $numOfAdultTix = $numOfAdultTix + $tix->adulticket;
+            $numOfAdultTix = $ticket['adult'] + $numOfAdultTix;
         }
+
         return $numOfAdultTix;
     }
 
     public function getTotalSeniorTickets() {
 
-        $totalSeniorTix = Tickets::where('seniorticket', '>', 0)->get();
+        $allTickets = session()->get('tickets');
         $numOfSeniorTix = 0;
-        foreach ($totalSeniorTix as $tix)
+
+        foreach ($allTickets as $ticket)
         {
-            $numOfSeniorTix = $numOfSeniorTix + $tix->seniorticket;
+            $numOfSeniorTix = $ticket['senior'] + $numOfSeniorTix;
         }
+
         return $numOfSeniorTix;
     }
 
     public function getTotalConcessionTickets() {
 
-        $totalConcessionTix = Tickets::where('concessionticket', '>', 0)->get();
+        $allTickets = session()->get('tickets');
         $numOfConcessionTix = 0;
-        foreach ($totalConcessionTix as $tix)
+
+        foreach ($allTickets as $ticket)
         {
-            $numOfConcessionTix = $numOfConcessionTix + $tix->concessionticket;
+            $numOfConcessionTix = $ticket['concession'] + $numOfConcessionTix;
         }
+
         return $numOfConcessionTix;
     }
 
@@ -76,14 +85,22 @@ class CartController extends Controller
      */
     public function index()
     {
-        $tickets = Tickets::all();
-        $numOfChildTix = $this->getTotalChildrenTickets();
-        $numOfAdultTix = $this->getTotalAdultTickets();
-        $numOfSeniorTix = $this->getTotalSeniorTickets();
-        $numOfConcessionTix = $this->getTotalConcessionTickets();
-        $grandTotal = $this->grandTotal($numOfChildTix, $numOfAdultTix, $numOfSeniorTix, $numOfConcessionTix);
+        if (session()->has('tickets')) {
+            $numOfChildTix = $this->getTotalChildrenTickets();
+            $numOfAdultTix = $this->getTotalAdultTickets();
+            $numOfSeniorTix = $this->getTotalSeniorTickets();
+            $numOfConcessionTix = $this->getTotalConcessionTickets();
+            $grandTotal = $this->grandTotal($numOfChildTix, $numOfAdultTix, $numOfSeniorTix, $numOfConcessionTix);
+        }
+        else {
+            $numOfChildTix = 0;
+            $numOfAdultTix = 0;
+            $numOfSeniorTix = 0;
+            $numOfConcessionTix = 0;
+            $grandTotal = 0;
+        }
 
-        return view('cart', compact('tickets', 'numOfChildTix', 'numOfAdultTix', 'numOfSeniorTix', 'numOfConcessionTix', 'grandTotal'));
+        return view('cart', compact('numOfChildTix', 'numOfAdultTix', 'numOfSeniorTix', 'numOfConcessionTix', 'grandTotal'));
     }
 
     /**
@@ -104,14 +121,64 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        //session()->flush();
+
         $this->validate($request, [
-           'moviename' => 'required',
-           'location' => 'required',
-           'time' => 'required',
+            'location' => 'required',
+            'time' => 'required',
         ]);
 
-        Tickets::create($request->all());
-        return redirect()->route('cart.index');
+        $ticket = array();
+
+        $id = mt_rand(0,2000);
+        $name = $request->moviename;
+        $location = $request->location;
+        $time = $request->time;
+        $child = $request->childticket;
+        $adult = $request->adulticket;
+        $senior = $request->seniorticket;
+        $concession = $request->concessionticket;
+
+        switch ($location)
+        {
+            case 0:
+                $location = "Melbourne Central";
+                break;
+            case 1:
+                $location = "Watergardens";
+                break;
+            case 2:
+                $location = "Northlands";
+                break;
+        }
+
+        switch ($time)
+        {
+            case 0:
+                $time = "Monday, 2-5pm";
+                break;
+            case 1:
+                $time = "Wednesday, 5-7pm";
+                break;
+            case 2:
+                $time = "Friday, 8-10pm";
+                break;
+        }
+
+
+        $ticket['id'] = $id;
+        $ticket['name'] = $name;
+        $ticket['location'] = $location;
+        $ticket['time'] = $time;
+        $ticket['child'] = $child;
+        $ticket['adult'] = $adult;
+        $ticket['senior'] = $senior;
+        $ticket['concession'] = $concession;
+
+        session()->push('tickets',  $ticket);
+
+        //return redirect()->route('cart.index');
+        return redirect()->action('CartController@index');
     }
 
     /**
@@ -122,8 +189,11 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        $prod = Tickets::find($id);
-        return view('cart',compact('prod'));
+        foreach(Session::get('tickets') as $ticket) {
+            if ($ticket['id'] == $id) {
+                return view('edit', compact('ticket'));
+            }
+        }
     }
 
     /**
@@ -133,10 +203,32 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        Tickets::find($id)->update($request->all());
-        return redirect()->route('cart.index') ->with('success','Product updated successfully');
+        $updatedChild = $request->childticket;
+        $updatedAdult = $request->adulticket;
+        $updatedSenior = $request->seniorticket;
+        $updatedConcession = $request->concessionticket;
+        $ticketID = $request->ticketID;
+
+        $tickets = session()->get('tickets');
+
+        foreach ($tickets as $key=>$ticket)
+        {
+            if ($ticket['id'] == $ticketID)
+            {
+                $tickets[$key]['child'] = $updatedChild;
+                $tickets[$key]['adult'] = $updatedAdult;
+                $tickets[$key]['senior'] = $updatedSenior;
+                $tickets[$key]['concession'] = $updatedConcession;
+                break;
+            }
+        }
+
+        session()->set('tickets', $tickets);
+        session()->save();
+
+        return redirect()->action('CartController@index') ->with('success','Ticket updated successfully');
     }
 
     /**
@@ -147,7 +239,19 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Tickets::find($id)->delete();
-        return redirect()->route('cart.index') ->with('success','Product deleted successfully');
+        $tickets = session()->get('tickets');
+
+
+        foreach ($tickets as $key=>$ticket)
+        {
+            if ($ticket['id'] == $id)
+            {
+                session()->forget('tickets.'.$key);
+                session()->save();
+                break;
+            }
+        }
+
+        return redirect()->action('CartController@index') ->with('successDel','Ticket deleted successfully');
     }
 }

@@ -26,7 +26,8 @@ class CreateWhatsHotsTable extends Migration
 
             $table->foreign('movie_id')
                 ->references('id')
-                ->on('movies');
+                ->on('movies')
+                ->onDelete('cascade');
         });
     }
 
