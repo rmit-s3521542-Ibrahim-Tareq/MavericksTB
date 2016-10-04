@@ -63,67 +63,84 @@
 
 @section('content')
 	@if ($message = Session::get('success'))
-		<div class="alert alert-success">
+		<div class="text-center alert alert-success">
+			<p>{{ $message }}</p>
+		</div>
+	@endif
+	@if ($message = Session::get('successDel'))
+		<div id="message" class="text-center alert alert-danger">
 			<p>{{ $message }}</p>
 		</div>
 	@endif
 
+	<div class="container">
+		<div class="row cart">
+			<div class="col-lg-6 cartItems">
+				<p id="cartHeading">Shopping Bag</p>
+				<div style="padding-bottom:20px;">
+					<div class="ticketContainer">
+						@if(Session::has('tickets'))
+							@foreach(Session::get('tickets') as $ticket)
+								<div class="ticketBlocks" style="padding-bottom:20px;">
+									<img src="../public/img/ticket.png" width="170" style="float:left;margin-top:-10px;margin-left:-30px;">
+									<span> Movie name: {{ $ticket['name'] }} </span><br />
+									<span> Location: {{ $ticket['location'] }} </span><br />
+									<span> Session Time: {{ $ticket['time'] }} </span><br />
+									@if ($ticket['child'] > 0)
+										<span> Child: {{ $ticket['child'] }} </span><br/>
+									@endif
+									@if ($ticket['adult'] > 0)
+										<span> Adult: {{ $ticket['adult'] }} </span><br/>
+									@endif
+									@if ($ticket['senior'] > 0)
+										<span> Senior: {{ $ticket['senior'] }} </span><br/>
+									@endif
+									@if ($ticket['concession'] > 0)
+										<span> Concession: {{ $ticket['concession'] }} </span>
+									@endif
 
-
-
-<div class="container">
-	<div class="row cart">
-		<div class="col-lg-6 cartItems">
-			<p id="cartHeading">Shopping Bag</p>
-			<div style="padding-bottom:20px;">
-				<div class="ticketContainer">
-					@foreach ($tickets as $ticket)
-						<div class="ticketBlocks">
-							<span>Movie name: {{ $ticket->moviename}}</span></br>
-							<span>Location: {{ $ticket->location}}</span></br>
-							<span>Session Time: {{ $ticket->time }}</span></br>
-							@if($ticket->childticket > 0)
-								<span>Child Ticket(s): {{ $ticket->childticket }}</span></br>
-							@endif
-							@if($ticket->adulticket > 0)
-								<span>Adult Ticket(s): {{ $ticket->adulticket }}</span></br>
-							@endif
-							@if($ticket->seniorticket > 0)
-								<span>Senior Ticket(s): {{ $ticket->seniorticket }}</span></br>
-							@endif
-							@if($ticket->concessionticket > 0)
-								<span>Concession Ticket(s): {{ $ticket->concessionticket }}</span>
-							@endif
-							<button type="button" id="{{ $ticket->id }}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
-
-							{!! Form::open(['method' => 'DELETE','route' => ['cart.destroy', $ticket->id],'style'=>'display:inline']) !!}
-							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-							{!! Form::close() !!}
-						</div>
-					@endforeach
+									<div style="margin-top:10px;">
+										{!! Form::open(['method' => 'DELETE','route' => ['cart.destroy', $ticket['id']],'style'=>'display:inline']) !!}
+										{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+										{!! Form::close() !!}
+										<a class="btn btn-primary" href="{{ route('cart.edit',$ticket['id']) }}">Edit</a>
+									</div>
+								</div>
+							@endforeach
+						@endif
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-lg-5 col-lg-offset-1 cartSummary">
-			<p id="summaryHeading">Order Summary</p>
-			@if ($numOfChildTix > 0)
-				<p class="ticketSummary">Child Ticket(s): <span id="child">{{ $numOfChildTix }} x $8</span></p>
-			@endif
-			@if ($numOfAdultTix > 0)
-				<p class="ticketSummary">Adult Ticket(s): <span id="adult">{{ $numOfAdultTix }} x $14</span></p>
-			@endif
-			@if ($numOfSeniorTix > 0)
-				<p class="ticketSummary">Senior Ticket(s): <span id="senior">{{ $numOfSeniorTix }} x $12</span></p>
-			@endif
-			@if ($numOfConcessionTix > 0)
-				<p class="ticketSummary">Concession Ticket(s): <span id="concession">{{ $numOfConcessionTix }} x $10</span></p>
-			@endif
-			{!! Form::open(['url' => 'payment']) !!}
-			<p class="totalPrice">Total: $<span>{{ $grandTotal }}</span> AUD</p>
-			<input type="hidden" name="total" value="{{ $grandTotal }}">
-			<button type="submit" class="col-lg-12 btn btn-default btn-md checkoutButton">PROCEED TO CHECKOUT</button>
-			{!! Form::close() !!}
+			<div class="col-lg-5 col-lg-offset-1 cartSummary">
+				<p id="summaryHeading">Order Summary</p>
+				@if ($numOfChildTix > 0)
+					<p class="ticketSummary">Child Ticket(s): <span id="child">{{ $numOfChildTix }} x $8</span></p>
+				@endif
+				@if ($numOfAdultTix > 0)
+					<p class="ticketSummary">Adult Ticket(s): <span id="adult">{{ $numOfAdultTix }} x $14</span></p>
+				@endif
+				@if ($numOfSeniorTix > 0)
+					<p class="ticketSummary">Senior Ticket(s): <span id="senior">{{ $numOfSeniorTix }} x $12</span></p>
+				@endif
+				@if ($numOfConcessionTix > 0)
+					<p class="ticketSummary">Concession Ticket(s): <span id="concession">{{ $numOfConcessionTix }} x $10</span></p>
+				@endif
+				{!! Form::open(['url' => 'payment']) !!}
+				<p class="totalPrice">Total: $<span>{{ $grandTotal }}</span> AUD</p>
+				<input type="hidden" name="total" value="{{ $grandTotal }}">
+				@if ($grandTotal > 0)
+					<button type="submit" class="col-lg-12 btn btn-default btn-md checkoutButton">PROCEED TO CHECKOUT</button>
+				@else
+					<button type="submit" class="col-lg-12 btn btn-default btn-md checkoutButton" disabled>PROCEED TO CHECKOUT</button>
+				@endif
+				{!! Form::close() !!}
+			</div>
 		</div>
 	</div>
-</div>
+@endsection
+
+@section('additionalJs')
+	<script>
+		$("#message").delay(3000).fadeOut();
+	</script>
 @endsection

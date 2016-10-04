@@ -21,7 +21,6 @@ class CreateTicketsTable extends Migration
             $table->integer('adulticket');
             $table->integer('seniorticket');
             $table->integer('concessionticket');
-            $table->timestamps();
         });
 
         Schema::table('tickets',function ($table) {
