@@ -7,6 +7,7 @@ use Session;
 
 use App\Http\Requests;
 use App\Models\Tickets;
+use App\Models\Movies;
 
 class CartController extends Controller
 {
@@ -85,12 +86,27 @@ class CartController extends Controller
      */
     public function index()
     {
+        $appendArr = array();
+
         if (session()->has('tickets')) {
             $numOfChildTix = $this->getTotalChildrenTickets();
             $numOfAdultTix = $this->getTotalAdultTickets();
             $numOfSeniorTix = $this->getTotalSeniorTickets();
             $numOfConcessionTix = $this->getTotalConcessionTickets();
             $grandTotal = $this->grandTotal($numOfChildTix, $numOfAdultTix, $numOfSeniorTix, $numOfConcessionTix);
+
+            $s = session()->get('tickets');
+            foreach($s as $ticket) {
+                $appender = array();
+                $appender['session'] = $ticket;
+
+                $movie = Movies::where('id', '=', $ticket['movie_id'])->first();
+                $cinema = Cinemas::where('id', '=', $ticket['location']);
+                $appender['movie'] = $movie;
+                $appender['cinema'] = $cinema;
+
+                array_push($appendArr, $appender);
+            }
         }
         else {
             $numOfChildTix = 0;
@@ -100,7 +116,7 @@ class CartController extends Controller
             $grandTotal = 0;
         }
 
-        return view('cart', compact('numOfChildTix', 'numOfAdultTix', 'numOfSeniorTix', 'numOfConcessionTix', 'grandTotal'));
+        return view('cart', compact('numOfChildTix', 'numOfAdultTix', 'numOfSeniorTix', 'numOfConcessionTix', 'grandTotal', 'appendArr'));
     }
 
     /**
@@ -130,8 +146,7 @@ class CartController extends Controller
 
         $ticket = array();
 
-        $id = mt_rand(0,2000);
-        $name = $request->moviename;
+        $movieid = $request->movieid;
         $location = $request->location;
         $time = $request->time;
         $child = $request->childticket;
@@ -139,35 +154,9 @@ class CartController extends Controller
         $senior = $request->seniorticket;
         $concession = $request->concessionticket;
 
-        switch ($location)
-        {
-            case 0:
-                $location = "Melbourne Central";
-                break;
-            case 1:
-                $location = "Watergardens";
-                break;
-            case 2:
-                $location = "Northlands";
-                break;
-        }
 
-        switch ($time)
-        {
-            case 0:
-                $time = "Monday, 2-5pm";
-                break;
-            case 1:
-                $time = "Wednesday, 5-7pm";
-                break;
-            case 2:
-                $time = "Friday, 8-10pm";
-                break;
-        }
-
-
-        $ticket['id'] = $id;
-        $ticket['name'] = $name;
+        $ticket['id'] = rand(1, 10000);
+        $ticket['movie_id'] = $movieid;
         $ticket['location'] = $location;
         $ticket['time'] = $time;
         $ticket['child'] = $child;
@@ -177,8 +166,7 @@ class CartController extends Controller
 
         session()->push('tickets',  $ticket);
 
-        //return redirect()->route('cart.index');
-        return redirect()->action('CartController@index');
+        return redirect()->route('cart.index');
     }
 
     /**

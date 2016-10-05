@@ -37,7 +37,7 @@
                     <div class="mShowing">
                         {!! Form::open(array('action' => 'CartController@store','method'=>'POST', 'id' => 'ticketForm')) !!}
                         <div class="modal-body">
-                            <input type="hidden" name="moviename" id="movieName"/>
+                            <input type="hidden" name="movieid" id="movieName"/>
                             <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                             <div class="row cinemaSession" style="margin-top:20px;">
                                 <div class="col-lg-6">

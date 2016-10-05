@@ -62,7 +62,7 @@ function createClicker(data, soon) {
 
     $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url(img/'+data['poster_url']+')');
     $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
-    $('#movieOverlay.overlay #movieName').val(data['movie_name']);
+    $('#movieOverlay.overlay #movieName').val(data['id']);
     $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
     $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
     $("#movieOverlay.overlay span#mGenre").text(data['genre']);

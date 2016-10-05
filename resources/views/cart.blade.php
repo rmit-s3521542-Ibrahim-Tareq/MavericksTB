@@ -80,10 +80,10 @@
 				<div style="padding-bottom:20px;">
 					<div class="ticketContainer">
 						@if(Session::has('tickets'))
-							@foreach(Session::get('tickets') as $ticket)
+							@foreach($appendArr as $ticket)
 								<div class="ticketBlocks" style="padding-bottom:20px;">
 									<img src="../public/img/ticket.png" width="170" style="float:left;margin-top:-10px;margin-left:-30px;">
-									<span> Movie name: {{ $ticket['name'] }} </span><br />
+									<span> Movie name: {{ $ticket['movie']['movie_name'] }} </span><br />
 									<span> Location: {{ $ticket['location'] }} </span><br />
 									<span> Session Time: {{ $ticket['time'] }} </span><br />
 									@if ($ticket['child'] > 0)

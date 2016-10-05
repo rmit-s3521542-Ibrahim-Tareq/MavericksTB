@@ -14,12 +14,9 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-<<<<<<< HEAD
             $table->integer('booking_id');
+            $table->integer('session_time_id');
             $table->string('ticket_id');
-            $table->double('quantity');
-            $table->timestamps();
-=======
             $table->string('moviename');
             $table->string('location');
             $table->string('time');
@@ -27,13 +24,21 @@ class CreateTicketsTable extends Migration
             $table->integer('adulticket');
             $table->integer('seniorticket');
             $table->integer('concessionticket');
->>>>>>> origin/nicholas
+            $table->timestamps();
         });
 
         Schema::table('tickets',function ($table) {
             $table->foreign('booking_id')
                 ->references('id')
-                ->on('bookings');
+                ->on('bookings')
+                ->onDelete('cascade');
+
+            //session time that was booked
+            $table->foreign('session_time_id')
+                ->references('id')
+                ->on('session_times')
+                ->onDelete('cascade');
+
         });
     }
 

@@ -102,7 +102,7 @@
                     }
                 }
             }
-        }, 500);
+        }, 1000);
     });
 
     $(window).on("hashchange", function() {

@@ -16,7 +16,6 @@ class CreateBookingsTable extends Migration
 
             $table->integer('booking_id');
             $table->integer('user_id');
-            $table->integer('session_time_id');
             $table->text('name');
             $table->string('address');
             $table->text('city');
@@ -35,14 +34,6 @@ class CreateBookingsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-
-
-            //session time that was booked
-            $table->foreign('session_time_id')
-                ->references('id')
-                ->on('session_times')
-                ->onDelete('cascade');
-
         });
     }
 
