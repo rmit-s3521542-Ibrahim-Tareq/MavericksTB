@@ -16,10 +16,8 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->integer('booking_id');
             $table->integer('session_time_id');
-            $table->string('ticket_id');
-            $table->string('moviename');
-            $table->string('location');
-            $table->string('time');
+            $table->string('movie_id');
+            $table->string('cinema_id');
             $table->integer('childticket');
             $table->integer('adulticket');
             $table->integer('seniorticket');

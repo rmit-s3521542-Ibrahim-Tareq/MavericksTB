@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
 use App\Http\Requests;
 use App\Models\Bookings;
+use App\Models\Tickets;
 use App\Models\TicketBookings;
 use phpDocumentor\Reflection\Types\Resource;
 
@@ -19,34 +20,6 @@ class PaymentController extends Controller
      */
     public function index(Request $request)
     {
-        $alltickets = session()->get('tickets');
-
-        foreach ($alltickets as $ticket) {
-
-            if ($ticket['adult'] == "")
-            {
-                $ticket['adult'] = 0;
-            }
-            if ($ticket['child'] == "")
-            {
-                $ticket['child'] = 0;
-            }
-            if ($ticket['senior'] == "")
-            {
-                $ticket['senior'] = 0;
-            }
-            if ($ticket['concession'] == "")
-            {
-                $ticket['concession'] = 0;
-            }
-
-            DB::table('tickets')->insert(
-                array('moviename' => $ticket['name'], 'location' => $ticket['location'], 'time' => $ticket['time'],
-                    'childticket' => $ticket['child'], 'adulticket' => $ticket['adult'],
-                    'seniorticket' => $ticket['senior'], 'concessionticket' => $ticket['concession'])
-            );
-        }
-
         $total = $request->input('total');
         return view('payment', compact('total'));
     }
@@ -69,7 +42,6 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
@@ -82,33 +54,66 @@ class PaymentController extends Controller
             'securitynum' => 'required',
         ]);
 
-        if (session()->has('count')) {
-            $bookingID = session()->get('count');
-        }
-        else
-        {
-            $bookingID = 0;
-            session()->put('count', 0);
+        $userid = 0;
+        if(!Auth::guest()) {
+            $userid = Auth::id();
         }
 
-        $ticketoo = session()->get('tickets');
+        $booking = Bookings::create(
+            array(
+                'user_id' => $userid,
+                'name' => $request->get('name'),
+                'address' => $request->get('address'),
+                'city' => $request->get('city'),
+                'postcode' => $request->get('postcode'),
+                'mobilenum' => $request->get('mobilenum'),
+                'cardnum' => $request->get('cardnum'),
+                'expirymonth' => $request->get('expirymonth'),
+                'expiryear' => $request->get('expiryear'),
+                'securitynum' => $request->get('securitynum')
+            )
+        );
 
-        foreach ($ticketoo as $ticket)
-        {
+        $alltickets = session()->get('tickets');
+        foreach ($alltickets as $ticket) {
+
+            if ($ticket['adult'] == "")
+            {
+                $ticket['adult'] = 0;
+            }
+            if ($ticket['child'] == "")
+            {
+                $ticket['child'] = 0;
+            }
+            if ($ticket['senior'] == "")
+            {
+                $ticket['senior'] = 0;
+            }
+            if ($ticket['concession'] == "")
+            {
+                $ticket['concession'] = 0;
+            }
+
+            $ticket = Tickets::create(
+                array(
+                    'booking_id' => $booking->id,
+                    'session_time_id' => $ticket['time'],
+                    'movie_id' => $ticket['movie_id'],
+                    'cinema_id' => $ticket['location'],
+                    'childticket' => $ticket['child'],
+                    'adulticket' => $ticket['adult'],
+                    'seniorticket' => $ticket['senior'],
+                    'concessionticket' => $ticket['concession']
+                )
+            );
+
             TicketBookings::create(
-                ['ticket_id' => $ticket['id'],
-                    'booking_id' => $bookingID]
+                array(
+                    'booking_id' => $booking->id,
+                    'ticket_id' => $ticket->id
+                )
             );
         }
-
-        $request->merge(
-            ['booking_id' => $bookingID]
-        );
-        Bookings::create($request->all());
-
-        $bookingID++;
-        session()->put('count', $bookingID);
-
         session()->forget('tickets');
 
         return view('success', compact('request'));
