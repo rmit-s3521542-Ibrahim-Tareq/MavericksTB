@@ -8,6 +8,7 @@ use App\Models\WishList;
 use App\Models\Movies;
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Http\Requests;
 
 class AccountController extends Controller
@@ -20,14 +21,14 @@ class AccountController extends Controller
     public function show() {
 
         $arr = array();
-        $wishes = WishList::where('user_id', '=', 1)->get(['movie_id']);
+        $wishes = WishList::where('user_id', '=', Auth::id())->get(['movie_id']);
         foreach ($wishes as $s) {
             $movieDetails = Movies::where('id', '=', $s['movie_id'])->first(['id', 'movie_name', 'poster_url']);
             array_push($arr, $movieDetails);
         }
 
         $bookingArr = array();
-        $bookings = Bookings::where('user_id', '=', 1)->get(['session_time_id', 'created_at']);
+        $bookings = Bookings::where('user_id', '=', Auth::id())->get(['session_time_id', 'created_at']);
         foreach ($bookings as $book){
             $bookingTempArr = array();
             $bookingTempArr['created_at'] = $book['created_at'];

@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body" style="border-bottom: 1px solid #484747;">
-                    <h3><b>Hello Nick..</b></h3>
+                    <h3><b>Hello {{ \App\Models\User::find(Auth::id())->name }}</b></h3>
                 </div>
 
 
