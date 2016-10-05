@@ -13,7 +13,10 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
+
             $table->integer('booking_id');
+            $table->integer('user_id');
+            $table->integer('session_time_id');
             $table->text('name');
             $table->string('address');
             $table->text('city');
@@ -26,7 +29,7 @@ class CreateBookingsTable extends Migration
             $table->timestamps();
         });
 
-        /* Schema::table('bookings', function ($table){
+         Schema::table('bookings', function ($table){
 
             $table->foreign('user_id')
                 ->references('id')
@@ -40,7 +43,7 @@ class CreateBookingsTable extends Migration
                 ->on('session_times')
                 ->onDelete('cascade');
 
-        }); */
+        });
     }
 
     /**
