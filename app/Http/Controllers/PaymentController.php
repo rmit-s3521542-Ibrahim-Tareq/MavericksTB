@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
-use Request;
+use App\Models\Bookings;
+use App\Models\TicketBookings;
 use phpDocumentor\Reflection\Types\Resource;
 
 class PaymentController extends Controller
@@ -15,9 +17,37 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $total = Request::get('total');
+        $alltickets = session()->get('tickets');
+
+        foreach ($alltickets as $ticket) {
+
+            if ($ticket['adult'] == "")
+            {
+                $ticket['adult'] = 0;
+            }
+            if ($ticket['child'] == "")
+            {
+                $ticket['child'] = 0;
+            }
+            if ($ticket['senior'] == "")
+            {
+                $ticket['senior'] = 0;
+            }
+            if ($ticket['concession'] == "")
+            {
+                $ticket['concession'] = 0;
+            }
+
+            DB::table('tickets')->insert(
+                array('moviename' => $ticket['name'], 'location' => $ticket['location'], 'time' => $ticket['time'],
+                    'childticket' => $ticket['child'], 'adulticket' => $ticket['adult'],
+                    'seniorticket' => $ticket['senior'], 'concessionticket' => $ticket['concession'])
+            );
+        }
+
+        $total = $request->input('total');
         return view('payment', compact('total'));
     }
 
@@ -39,7 +69,49 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'postcode' => 'required',
+            'cardnum' => 'required',
+            'mobilenum' => 'required',
+            'expirymonth' => 'required',
+            'expiryear' => 'required',
+            'securitynum' => 'required',
+        ]);
+
+        if (session()->has('count')) {
+            $bookingID = session()->get('count');
+        }
+        else
+        {
+            $bookingID = 0;
+            session()->put('count', 0);
+        }
+
+        $ticketoo = session()->get('tickets');
+
+        foreach ($ticketoo as $ticket)
+        {
+            TicketBookings::create(
+                ['ticket_id' => $ticket['id'],
+                    'booking_id' => $bookingID]
+            );
+        }
+
+        $request->merge(
+            ['booking_id' => $bookingID]
+        );
+        Bookings::create($request->all());
+
+        $bookingID++;
+        session()->put('count', $bookingID);
+
+        session()->forget('tickets');
+
+        return view('success', compact('request'));
     }
 
     /**
