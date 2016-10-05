@@ -7,6 +7,8 @@ use Session;
 
 use App\Http\Requests;
 use App\Models\Tickets;
+use App\Models\Cinemas;
+use App\Models\SessionTimes;
 use App\Models\Movies;
 
 class CartController extends Controller
@@ -101,9 +103,12 @@ class CartController extends Controller
                 $appender['session'] = $ticket;
 
                 $movie = Movies::where('id', '=', $ticket['movie_id'])->first();
-                $cinema = Cinemas::where('id', '=', $ticket['location']);
+                $cinema = Cinemas::where('id', '=', $ticket['location'])->first();
+                $time = SessionTimes::where('id', '=', $ticket['time'])->first();
+
                 $appender['movie'] = $movie;
                 $appender['cinema'] = $cinema;
+                $appender['time'] = $time;
 
                 array_push($appendArr, $appender);
             }
@@ -179,7 +184,18 @@ class CartController extends Controller
     {
         foreach(Session::get('tickets') as $ticket) {
             if ($ticket['id'] == $id) {
-                return view('edit', compact('ticket'));
+                $appender = array();
+                $appender['session'] = $ticket;
+
+                $movie = Movies::where('id', '=', $ticket['movie_id'])->first();
+                $cinema = Cinemas::where('id', '=', $ticket['location'])->first();
+                $time = SessionTimes::where('id', '=', $ticket['time'])->first();
+
+                $appender['movie'] = $movie;
+                $appender['cinema'] = $cinema;
+                $appender['time'] = $time;
+
+                return view('edit', compact('appender'));
             }
         }
     }
@@ -240,6 +256,6 @@ class CartController extends Controller
             }
         }
 
-        return redirect()->action('CartController@index') ->with('successDel','Ticket deleted successfully');
+        return redirect()->route('cart.index') ->with('successDel','Ticket deleted successfully');
     }
 }

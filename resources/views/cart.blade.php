@@ -84,26 +84,26 @@
 								<div class="ticketBlocks" style="padding-bottom:20px;">
 									<img src="../public/img/ticket.png" width="170" style="float:left;margin-top:-10px;margin-left:-30px;">
 									<span> Movie name: {{ $ticket['movie']['movie_name'] }} </span><br />
-									<span> Location: {{ $ticket['location'] }} </span><br />
-									<span> Session Time: {{ $ticket['time'] }} </span><br />
-									@if ($ticket['child'] > 0)
-										<span> Child: {{ $ticket['child'] }} </span><br/>
+									<span> Location: {{ $ticket['cinema']['cinema_name'] . ' : ' . $ticket['cinema']['location'] }} </span><br />
+									<span> Session Time: {{ $ticket['time']['session_time'] }} </span><br />
+									@if ($ticket['session']['child'] > 0)
+										<span> Child: {{ $ticket['session']['child'] }} </span><br/>
 									@endif
-									@if ($ticket['adult'] > 0)
-										<span> Adult: {{ $ticket['adult'] }} </span><br/>
+									@if ($ticket['session']['adult'] > 0)
+										<span> Adult: {{ $ticket['session']['adult'] }} </span><br/>
 									@endif
-									@if ($ticket['senior'] > 0)
-										<span> Senior: {{ $ticket['senior'] }} </span><br/>
+									@if ($ticket['session']['senior'] > 0)
+										<span> Senior: {{ $ticket['session']['senior'] }} </span><br/>
 									@endif
-									@if ($ticket['concession'] > 0)
-										<span> Concession: {{ $ticket['concession'] }} </span>
+									@if ($ticket['session']['concession'] > 0)
+										<span> Concession: {{ $ticket['session']['concession'] }} </span>
 									@endif
 
 									<div style="margin-top:10px;">
-										{!! Form::open(['method' => 'DELETE','route' => ['cart.destroy', $ticket['id']],'style'=>'display:inline']) !!}
+										{!! Form::open(['method' => 'DELETE','route' => ['cart.destroy', $ticket['session']['id']],'style'=>'display:inline']) !!}
 										{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 										{!! Form::close() !!}
-										<a class="btn btn-primary" href="{{ route('cart.edit',$ticket['id']) }}">Edit</a>
+										<a class="btn btn-primary" href="{{ route('cart.edit',$ticket['session']['id']) }}">Edit</a>
 									</div>
 								</div>
 							@endforeach

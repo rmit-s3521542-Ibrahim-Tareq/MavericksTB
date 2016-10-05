@@ -19,25 +19,16 @@
                 Edit booking info
             </p>
             <div class="text-center" style="font-size:1.2em; margin-bottom:20px; color:#c5c5c5;">
-            {!! Form::model($ticket, ['method' => 'PATCH','route' => ['cart.update', $ticket['id']]]) !!}
-                <span> TicketID: {{ $ticket['id'] }}  </span><br/>
-                <span> Name: {{ $ticket['name'] }}  </span><br/>
-                <span> Location: {{ $ticket['location'] }}  </span><br/>
-                <span> Time: {{ $ticket['time'] }}  </span><br/>
+            {!! Form::model($appender['session'], ['method' => 'PATCH','route' => ['cart.update', $appender['session']['id']]]) !!}
+                <span> Name: {{ $appender['movie']['movie_name'] }}  </span><br/>
+                <span> Location: {{ $appender['cinema']['cinema_name'] . ' : ' . $appender['cinema']['location'] }}  </span><br/>
+                <span> Time: {{ $appender['time']['session_time'] }}  </span><br/>
                 <div style="margin-top:50px;">
-                    <input type="hidden" name="ticketID" value="{{ $ticket['id'] }}">
-                    @if ($ticket['child'] > 0)
-                        <p class="ticketEdit"> Child: <input type="number" name="childticket" min="1" max="10" value="{{ $ticket['child'] }}"> </p><br/>
-                    @endif
-                    @if ($ticket['adult'] > 0)
-                        <p class="ticketEdit"> Adult: <input type="number" name="adulticket" min="1" max="10" value="{{ $ticket['adult'] }}"> </p><br/>
-                    @endif
-                    @if ($ticket['senior'] > 0)
-                        <p class="ticketEdit"> Senior: <input type="number" name="seniorticket" min="1" max="10" value="{{ $ticket['senior'] }}"> </p><br/>
-                    @endif
-                    @if ($ticket['concession'] > 0)
-                        <p class="ticketEdit"> Concession: <input type="number" name="concessionticket" min="1" max="10" value="{{ $ticket['concession'] }}"> </p>
-                    @endif
+                    <input type="hidden" name="ticketID" value="{{ $appender['session']['id'] }}">
+                        <p class="ticketEdit"> Child: <input type="number" name="childticket" min="0" max="10" value="{{ $appender['session']['child'] }}"> </p><br/>
+                        <p class="ticketEdit"> Adult: <input type="number" name="adulticket" min="0" max="10" value="{{ $appender['session']['adult'] }}"> </p><br/>
+                        <p class="ticketEdit"> Senior: <input type="number" name="seniorticket" min="0" max="10" value="{{ $appender['session']['senior'] }}"> </p><br/>
+                        <p class="ticketEdit"> Concession: <input type="number" name="concessionticket" min="0" max="10" value="{{ $appender['session']['concession'] }}"> </p>
                 </div>
             </div>
             <button class="center-block btn btn-primary btn-md" style="margin-bottom:30px;" type="submit">Update</button>
