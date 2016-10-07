@@ -16,9 +16,9 @@
                         <h3>WISH-LIST</h3>
                         @foreach($wishlist as $cur)
                         <div class="col-md-2 boxHits">
-                            <img src="{{url('/')}}/img/{{$cur['poster_url']}}" class="img-thumbnail" alt="{{$cur['movie_name']}}" width="180" />
-                            {!! Form::open(['method' => 'DELETE','route' => ['account.destroy', $cur['wish_id']],'style'=>'display:inline']) !!}
-                            {!! Form::submit('', ['class' => 'glyphicon glyphicon-remove close-wish']) !!}
+                            <img src="{{url('/')}}/img/{{$cur['poster_url']}}" class="img-thumbnail" alt="{{$cur['movie_name']}}" style="width:180px; height:230px;" />
+                            {!! Form::open(['method' => 'DELETE','route' => ['account.destroy', $cur['wish_id']],'style'=>'display:block;width:100%;height:100%;']) !!}
+                            {!! Form::submit('Delete', ['class' => 'close-wish btn btn-danger btn-xs']) !!}
                             {!! Form::close() !!}
                         </div>
                         @endforeach
@@ -95,9 +95,10 @@
     }
 
     .close-wish {
-        position: absolute; top: 5px; right: 10px; color: white; opacity: 1;
-        margin:0;
-        background-color:transparent;
+        position: absolute;
+        top: -30px;
+        right: 5px;
+        color: white;
     }
 </style>
 @endsection

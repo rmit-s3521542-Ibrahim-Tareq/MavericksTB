@@ -71,6 +71,13 @@ function createClicker(data, soon) {
     $("#movieOverlay.overlay span#mIMDBRating").text(data['imdb_rating']);
     $("#movieOverlay.overlay span#mActors").text(data['actors']);
 
+    if(data['youtube_url'].length < 1) {
+        $("#movieOverlay.overlay #mYoutube").hide();
+    }
+    else {
+        $("#movieOverlay.overlay #mYoutube").show();
+    }
+
     var className = "";
     switch(data['rating']) {
         case "G": className="ratingG"; break;
