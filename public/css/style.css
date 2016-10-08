@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 .boxHits
 {
     padding: 0px;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease;
 }
 
 .boxHits:hover
@@ -69,9 +69,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .img-thumbnail
 {
-    background-color: lightgray;
     width:290px;
     height:430px;
+    transition:box-shadow 0.5s ease;
+}
+
+.img-thumbnail:hover {
+    box-shadow:0px 5px 20px rgba(0,0,0,0.8);
 }
 
 .newsBox

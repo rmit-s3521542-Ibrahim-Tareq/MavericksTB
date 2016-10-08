@@ -51,3 +51,9 @@ footer {
     opacity:1;
     transform:scale(1);
 }
+
+.img-thumbnail
+{
+    width:290px;
+    height:430px;
+}

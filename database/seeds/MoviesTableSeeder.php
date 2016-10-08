@@ -27,7 +27,7 @@ class MoviesTableSeeder extends Seeder
             'youtube_url' => 'https://www.youtube.com/embed/KRrddku5xRk',
             'short_desc' => 'Christmas will never be the same again.',
             'carousel_url' => 'santa.jpg',
-            'carousel_sub' => ''
+            'carousel_sub' => 'Coming Soon'
         ]);
 
         DB::table('movies')->insert([
@@ -51,7 +51,7 @@ class MoviesTableSeeder extends Seeder
 
         DB::table('movies')->insert([
             'imdb_id' => 'tt0097050',
-            'movie_name' => 'The adventures of Milo and Otis',
+            'movie_name' => 'The Adventures of Milo and Otis',
             'release_date' => '620006400000',
             'genre' => 'Drama, Adventure, Family',
             'sypnosis' => 'The story of two animals and their adventures. Milo, the cat, and Otis, the dog, are two animals who grew up together on the same farm. One day, the two are separated and begin a journey to find each other. The adventurous, and often perilous quest finds the two animals traveling across mountains, plains, and snow-covered lands searching for one another.',
@@ -167,7 +167,7 @@ class MoviesTableSeeder extends Seeder
             'imdb_id' => 'tt3263904',
             'movie_name' => 'Sully',
             'release_date' => '1473379200000',
-            'genre' => 'Biography, Drama',
+            'genre' => 'Action, Adventure, Fantasy',
             'sypnosis' => 'On Thursday, January 15th, 2009, the world witnessed the "Miracle on the Hudson" when Captain Chesley Sullenberger, nicknamed "Sully" & is portrayed by Tom Hanks glided his disabled plane onto the frigid waters of the Hudson River, saving the lives of all 155 aboard. However, even as Sully was being heralded by the public and the media for his unprecedented feat of aviation skill, an investigation was unfolding that threatened to destroy his reputation and his career.',
             'actors' => 'Tom Hanks, Aaron Eckhart, Valerie Mahaffey, Delphi Harrington',
             'poster_url' => 'sully.jpg',
@@ -177,6 +177,43 @@ class MoviesTableSeeder extends Seeder
             'created_at' => '2016-10-06 07:53:43',
             'updated_at' => '2016-10-06 07:53:43',
             'youtube_url' => 'https://www.youtube.com/embed/mjKEXxO2KNE',
+            'short_desc' => '',
+            'carousel_url' => '',
+            'carousel_sub' => ''
+        ]);
+
+        DB::table('movies')->insert([
+            'imdb_id' => 'tt1211837',
+            'movie_name' => 'Doctor Strange',
+            'release_date' => '1478217600000',
+            'genre' => 'Biography, Drama',
+            'sypnosis' => 'Marvel\'s "Doctor Strange" follows the story of the talented neurosurgeon Doctor Stephen Strange who, after a tragic car accident, must put ego aside and learn the secrets of a hidden world of mysticism and alternate dimensions. Based in New York City\'s Greenwich Village, Doctor Strange must act as an intermediary between the real world and what lies beyond, utilising a vast array of metaphysical abilities and artifacts to protect the Marvel Cinematic Universe.',
+            'actors' => 'Rachel McAdams, Benedict Cumberbatch, Amy Landecker, Mads Mikkelsen',
+            'poster_url' => 'strange.jpg',
+            'rating' => 'M',
+            'imdb_rating' => '0',
+            'runtime' => 115,
+            'created_at' => '2016-10-06 07:53:43',
+            'updated_at' => '2016-10-06 07:53:43',
+            'youtube_url' => 'https://www.youtube.com/embed/HSzx-zryEgM',
+            'short_desc' => '',
+            'carousel_url' => 'strange.jpg',
+            'carousel_sub' => 'Coming Soon'
+        ]);
+
+        DB::table('movies')->insert([
+            'imdb_id' => 'tt4651520',
+            'movie_name' => 'Bad Moms',
+            'release_date' => '1469750400000',
+            'genre' => 'Comedy',
+            'sypnosis' => 'Amy has a seemingly perfect life - a great marriage, over-achieving kids, beautiful home and a career. However, she\'s overworked, over-committed and exhausted to the point that she\'s about to snap. Fed up, she joins forces with two other over-stressed moms on a quest to liberate themselves from conventional responsibilities - going on a wild, un-mom-like binge of long overdue freedom, fun and self-indulgence - putting them on a collision course with PTA Queen Bee Gwendolyn and her clique of devoted perfect moms.',
+            'poster_url' => 'mom.jpg',
+            'rating' => 'R',
+            'imdb_rating' => '7',
+            'runtime' => 100,
+            'created_at' => '2016-10-06 07:53:43',
+            'updated_at' => '2016-10-06 07:53:43',
+            'youtube_url' => 'https://www.youtube.com/embed/HGZtHfE9Jh4',
             'short_desc' => '',
             'carousel_url' => '',
             'carousel_sub' => ''
@@ -209,28 +246,9 @@ class MoviesTableSeeder extends Seeder
             'location' => 'Northland'
         ]);
 
-
-
-
-
-
-
-
-
-        DB::table('session_times')->insert([
-            'session_time' => 'Monday, 2 - 5PM',
-            'movie_id' => 6,
-            'cinema_id' => 1
-        ]);
-        DB::table('session_times')->insert([
-            'session_time' => 'Wednesday, 5 - 7PM',
-            'movie_id' => 6,
-            'cinema_id' => 1
-        ]);
-        DB::table('session_times')->insert([
-            'session_time' => 'Friday, 8 - 10PM',
-            'movie_id' => 6,
-            'cinema_id' => 1
+        DB::table('cinemas')->insert([
+            'cinema_name' => 'Chadstone',
+            'location' => 'Chadstone'
         ]);
 
 
@@ -241,8 +259,345 @@ class MoviesTableSeeder extends Seeder
 
 
 
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday 7PM',
+            'movie_id' => 2,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 8.30PM',
+            'movie_id' => 2,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday 5.30PM',
+            'movie_id' => 2,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Thursday 5.30PM',
+            'movie_id' => 2,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 7.30PM',
+            'movie_id' => 2,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Tuesday 10AM',
+            'movie_id' => 2,
+            'cinema_id' => 4
+        ]);
 
 
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 11.30AM',
+            'movie_id' => 3,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 10AM',
+            'movie_id' => 3,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 10.30AM',
+            'movie_id' => 3,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday 3.30PM',
+            'movie_id' => 3,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 5.30PM',
+            'movie_id' => 3,
+            'cinema_id' => 4
+        ]);
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 7.30PM',
+            'movie_id' => 4,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 10.30AM',
+            'movie_id' => 4,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 6PM',
+            'movie_id' => 4,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday 7.30PM',
+            'movie_id' => 4,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday 11.30AM',
+            'movie_id' => 4,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Thursday 2.30PM',
+            'movie_id' => 4,
+            'cinema_id' => 4
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 1.30PM',
+            'movie_id' => 4,
+            'cinema_id' => 4
+        ]);
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 4PM',
+            'movie_id' => 5,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 10.30AM',
+            'movie_id' => 5,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 2.30PM',
+            'movie_id' => 5,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 2PM',
+            'movie_id' => 5,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 6.30PM',
+            'movie_id' => 5,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday 3.30PM',
+            'movie_id' => 5,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Tuesday 5.30PM',
+            'movie_id' => 5,
+            'cinema_id' => 4
+        ]);
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 7.30PM',
+            'movie_id' => 6,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday 9.30PM',
+            'movie_id' => 6,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday 10.30PM',
+            'movie_id' => 6,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 5.30PM',
+            'movie_id' => 6,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Tuesday 2.30PM',
+            'movie_id' => 6,
+            'cinema_id' => 4
+        ]);
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 4.30PM',
+            'movie_id' => 7,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 9.30PM',
+            'movie_id' => 7,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 11.30AM',
+            'movie_id' => 7,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 4.30PM',
+            'movie_id' => 7,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 6.30PM',
+            'movie_id' => 7,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Wednesday 10AM',
+            'movie_id' => 7,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Thursday 9.30PM',
+            'movie_id' => 7,
+            'cinema_id' => 4
+        ]);
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 4.30PM',
+            'movie_id' => 8,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 10.30AM',
+            'movie_id' => 8,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 11.30AM',
+            'movie_id' => 8,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 10.30AM',
+            'movie_id' => 8,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 4.30PM',
+            'movie_id' => 8,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday 5.30PM',
+            'movie_id' => 8,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Tuesday 6.30PM',
+            'movie_id' => 8,
+            'cinema_id' => 4
+        ]);
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 8.30PM',
+            'movie_id' => 9,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 8.30PM',
+            'movie_id' => 9,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 9.30AM',
+            'movie_id' => 9,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday 7.30PM',
+            'movie_id' => 9,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 6.30PM',
+            'movie_id' => 9,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Thursday 4.30PM',
+            'movie_id' => 9,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 10.30AM',
+            'movie_id' => 9,
+            'cinema_id' => 4
+        ]);
+
+
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 10PM',
+            'movie_id' => 11,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Sunday 9PM',
+            'movie_id' => 11,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 6.30PM',
+            'movie_id' => 11,
+            'cinema_id' => 1
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Monday 9.30PM',
+            'movie_id' => 11,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Thursday 10PM',
+            'movie_id' => 11,
+            'cinema_id' => 2
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Tuesday 9.30PM',
+            'movie_id' => 11,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Friday 8.30PM',
+            'movie_id' => 11,
+            'cinema_id' => 3
+        ]);
+        DB::table('session_times')->insert([
+            'session_time' => 'Saturday 2.30PM',
+            'movie_id' => 11,
+            'cinema_id' => 4
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        DB::table('carousels')->insert([
+            'position' => -1,
+            'movie_id' => 10
+        ]);
         DB::table('carousels')->insert([
             'position' => 0,
             'movie_id' => 1

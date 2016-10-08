@@ -80,6 +80,10 @@
 				<div style="padding-bottom:20px;">
 					<div class="ticketContainer">
 						@if(Session::has('tickets'))
+							@if(count($appendArr) < 1)
+							<p>There are no items in your cart.</p>
+							@endif
+
 							@foreach($appendArr as $ticket)
 								<div class="ticketBlocks" style="padding-bottom:20px;">
 									<img src="../public/img/ticket.png" width="170" style="float:left;margin-top:-10px;margin-left:-30px;">
