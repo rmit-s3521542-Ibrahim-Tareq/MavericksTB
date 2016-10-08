@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookings;
+use App\Models\Cinemas;
 use App\Models\SessionTimes;
 use App\Models\TicketBookings;
 use App\Models\Tickets;
@@ -40,8 +41,18 @@ class AccountController extends Controller
             $movieID = TicketBookings::where('booking_id','=', $bookingID)->get(['ticket_id']);
             $movieDetails= array();
             foreach ($movieID as $movie) {
-                $m = Tickets::where('id', '=', $movie['ticket_id'])->first(['moviename', 'location', 'time', 'childticket', 'adulticket', 'seniorticket', 'concessionticket']);
-                array_push($movieDetails, $m);
+                $appender = array();
+                $m = Tickets::where('id', '=', $movie['ticket_id'])->first(['movie_id', 'session_time_id', 'cinema_id', 'childticket', 'adulticket', 'seniorticket', 'concessionticket']);
+                $movie_name = Movies::where('id', '=', $m['movie_id'])->first(['movie_name']);
+                $movie_location = Cinemas::where('id', '=', $m['cinema_id'])->first(['cinema_name']);
+                $movie_session = SessionTimes::where('id', '=', $m['session_time_id'])->first(['session_time']);
+
+                $appender['ticket'] = $m;
+                $appender['movie'] = $movie_name;
+                $appender['location'] = $movie_location;
+                $appender['session'] = $movie_session;
+
+                array_push($movieDetails, $appender);
             }
             $bookingTempArr['movie_details'] = $movieDetails;
             array_push($bookingArr, $bookingTempArr);

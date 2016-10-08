@@ -51,14 +51,15 @@
                                                 <tr>
                                                     <td>
                                                     <div class="row">
-                                                        <div class="col-md-6">Movie: {{$movie['moviename']}}</div>
-                                                        <div class="col-md-6">Location: {{$movie['location']}}</div>
+                                                        <div class="col-md-4">Movie: {{$movie['movie']['movie_name']}}</div>
+                                                        <div class="col-md-4">Location: {{$movie['location']['cinema_name']}}</div>
+                                                        <div class="col-md-4">Session-Time: {{$movie['session']['session_time']}}</div>
                                                     </div>
 
-                                            <div>Child: {{$movie['childticket']}}</div>
-                                            <div>Adult: {{$movie['adulticket']}}</div>
-                                            <div>Senior: {{$movie['seniorticket']}}</div>
-                                            <div>Concession: {{$movie['concessionticket']}}</div></td></tr>
+                                            <div>Child: {{$movie['ticket']['childticket']}}</div>
+                                            <div>Adult: {{$movie['ticket']['adulticket']}}</div>
+                                            <div>Senior: {{$movie['ticket']['seniorticket']}}</div>
+                                            <div>Concession: {{$movie['ticket']['concessionticket']}}</div></td></tr>
 
                                         @endforeach
                                         </table>
