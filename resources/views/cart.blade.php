@@ -111,6 +111,8 @@
 									</div>
 								</div>
 							@endforeach
+						@else
+						<p>There are no items in your cart.</p>
 						@endif
 					</div>
 				</div>
