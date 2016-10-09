@@ -41,8 +41,8 @@ function resetFields()
 
 var movies = {};
 var moviesSoon = {};
-var cinemas = [];
-var sessions = [];
+var cinemas = {};
+var sessions = {};
 
 var selectedCinema = -1;
 var selectedTime = -1;
@@ -62,7 +62,7 @@ function createClicker(data, soon) {
 
     $('#movieOverlay.overlay .imgOverlay').css('background-image', 'url(img/'+data['poster_url']+')');
     $('#movieOverlay.overlay h1#mMovieName').text(data['movie_name']);
-    $('#movieOverlay.overlay #movieName').val(data['movie_name']);
+    $('#movieOverlay.overlay #movieName').val(data['id']);
     $("#movieOverlay.overlay p#mSypnosis").text(data['sypnosis']);
     $("#movieOverlay.overlay span#mRuntime").text(data['runtime']);
     $("#movieOverlay.overlay span#mGenre").text(data['genre']);
@@ -70,6 +70,13 @@ function createClicker(data, soon) {
     $("#movieOverlay.overlay #mYoutube").attr('src', data['youtube_url']);
     $("#movieOverlay.overlay span#mIMDBRating").text(data['imdb_rating']);
     $("#movieOverlay.overlay span#mActors").text(data['actors']);
+
+    if(data['youtube_url'].length < 1) {
+        $("#movieOverlay.overlay #mYoutube").hide();
+    }
+    else {
+        $("#movieOverlay.overlay #mYoutube").show();
+    }
 
     var className = "";
     switch(data['rating']) {
@@ -95,8 +102,10 @@ $(document).ready(function() {
 
         $("#mTime").html('<option selected disabled>You must first select a cinema</option>');
         for(var e in sessions) {
-            if(sessions[e]['cinema_id'] == cinemas[selectedCinema]['id'] && sessions[e]['movie_id'] == selectedMovie) {
-                $("#mTime").append('<option value="'+e+'">'+sessions[e]['session_time']+'</option>');
+            if(sessions.hasOwnProperty(e)) {
+                if (sessions[e]['cinema_id'] == cinemas[' ' + selectedCinema + ' ']['id'] && sessions[e]['movie_id'] == selectedMovie) {
+                    $("#mTime").append('<option value="' + sessions[e]['id'] + '">' + sessions[e]['session_time'] + '</option>');
+                }
             }
         }
     });
@@ -121,12 +130,17 @@ $(document).ready(function() {
         success: function(data) {
             movies = {};
             moviesSoon = {};
-            cinemas = data[2];
-            sessions = data[3];
+            cinemas = {};
+            sessions = {};
 
             $("#mLocation").html('<option value="-1" selected disabled>Select a cinema</option>');
-            for(var e in cinemas) {
-                $("#mLocation").append('<option value="'+e+'">'+cinemas[e]['cinema_name']+'</option>');
+            for(var e in data[2]) {
+                cinemas[' '+data[2][e]['id'] + ' '] = data[2][e];
+                $("#mLocation").append('<option value="'+data[2][e]['id']+'">'+data[2][e]['cinema_name']+'</option>');
+            }
+
+            for(var e in data[3]) {
+                sessions[' ' + data[3][e]['id'] + ' '] = data[3][e];
             }
 
             $("#mTime").html('<option selected disabled>You must first select a cinema</option>');

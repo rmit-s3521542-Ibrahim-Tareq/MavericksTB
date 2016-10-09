@@ -51,7 +51,7 @@
         @else
             @foreach($hot as $k=>$h)
             <div class="col-lg-3 boxHits">
-                <img src="{{url('/')}}/img/{{$hotMovies[$k]['poster_url']}}" class="img-thumbnail" alt="{{$hotMovies[$k]['movie_name']}}" width="290" height="200" onclick="openBooking('{{$hotMovies[$k]['id']}}')">
+                <img src="{{url('/')}}/img/{{$hotMovies[$k]['poster_url']}}" class="img-thumbnail" alt="{{$hotMovies[$k]['movie_name']}}" onclick="openBooking('{{$hotMovies[$k]['id']}}')">
             </div>
             @endforeach
         @endif
@@ -82,7 +82,7 @@
 <script>
     function openBooking(id)
     {
-        var id = parseInt(id) - 1;
+        var id = parseInt(id);
         createClicker(movies[" " + id + " "]);
     }
 </script>

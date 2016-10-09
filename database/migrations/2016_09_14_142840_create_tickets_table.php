@@ -14,9 +14,10 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('moviename');
-            $table->string('location');
-            $table->string('time');
+            $table->integer('booking_id');
+            $table->integer('session_time_id');
+            $table->string('movie_id');
+            $table->string('cinema_id');
             $table->integer('childticket');
             $table->integer('adulticket');
             $table->integer('seniorticket');
@@ -29,6 +30,13 @@ class CreateTicketsTable extends Migration
                 ->references('id')
                 ->on('bookings')
                 ->onDelete('cascade');
+
+            //session time that was booked
+            $table->foreign('session_time_id')
+                ->references('id')
+                ->on('session_times')
+                ->onDelete('cascade');
+
         });
     }
 

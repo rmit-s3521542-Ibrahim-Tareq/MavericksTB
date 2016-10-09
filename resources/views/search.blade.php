@@ -30,8 +30,8 @@
     <script>
         function openBooking(id)
         {
-            var id = parseInt(id) - 1;
-            createClicker(movies[id]);
+            var id = parseInt(id);
+            createClicker(movies[" " + id + " "]);
         }
     </script>
 @endsection
