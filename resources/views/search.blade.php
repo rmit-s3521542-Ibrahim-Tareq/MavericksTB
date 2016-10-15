@@ -15,8 +15,8 @@
             </div>
         @else
             @foreach($movies as $cur)
-                <div class="col-md-2 boxHits">
-                    <img src="{{url('/')}}/img/{{$cur['poster_url']}}" class="img-thumbnail" alt="{{$cur['movie_name']}}" width="180" onclick="openBooking('{{$cur['id']}}')" />
+                <div class="col-md-3 boxHits">
+                    <img src="{{url('/')}}/img/{{$cur['poster_url']}}" class="img-thumbnail" alt="{{$cur['movie_name']}}" onclick="openBooking('{{$cur['id']}}')" />
                 </div>
             @endforeach
         @endif

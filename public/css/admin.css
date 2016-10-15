@@ -23,14 +23,6 @@ footer {
     z-index:2;
 }
 
-.boxHits img {
-    transition:filter 0.5s ease;
-}
-
-.boxHits:hover img {
-    filter: blur(2px);
-}
-
 .boxHits .hiddenBox {
     text-align:center;
     padding:15px 20px;
